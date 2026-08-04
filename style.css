@@ -422,10 +422,11 @@ body {
 }
 
 .avatar-img {
-  width: 75px;
-  height: 75px;
-  border-radius: 16px;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
   object-fit: cover;
+  object-position: top center;
   border: 2px solid var(--primary-cyan);
   box-shadow: var(--shadow-glow);
 }
