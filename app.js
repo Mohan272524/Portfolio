@@ -1,7 +1,6 @@
 /* ==========================================================================
    CHUKKA MOHAN - DATA ANALYST PORTFOLIO DYNAMIC ANALYTICS ENGINE
-   Features: Real-Time Multi-Slicer Data Engine, Dynamic Chart.js Visualizer,
-             Filtered Master Data Inspector, A/B Z-Test Calculator, SQL Sandbox.
+   Single Source of Truth: Reconciled A/B Test (ab_data.csv) & Olist (2016-2018)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -77,32 +76,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 2. PROJECT 1: REALISTIC TRANSACTIONAL DATA ENGINE & POWER BI SLICERS
+  // 2. PROJECT 1: OLIST E-COMMERCE DATA ENGINE (ACCURATE 2016-2018 DATASET)
   // --------------------------------------------------------------------------
   const categories = ['Health & Beauty', 'Watches & Gifts', 'Bed & Bath', 'Sports & Leisure', 'Computers & Acc.'];
   const states = ['São Paulo (SP)', 'Rio de Janeiro (RJ)', 'Minas Gerais (MG)', 'Rio Grande (RS)'];
   const payments = ['Credit Card', 'Boleto (Bank Slip)', 'Voucher', 'Debit Card'];
+  const olistYears = ['2018', '2017', '2016'];
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-  // Seeded Realistic Master Dataset Array (120 Records)
+  // Seeded Master Dataset (120 Records spanning 2016 - 2018)
   const masterDataset = [];
   let orderIdCounter = 10001;
 
   for (let i = 0; i < 120; i++) {
-    const year = i % 2 === 0 ? '2026' : '2025';
+    const year = olistYears[i % olistYears.length];
     const monthIndex = i % 12;
     const month = months[monthIndex];
     const category = categories[i % categories.length];
     const state = states[i % states.length];
     const payment = payments[(i * 3) % payments.length];
     
-    // Realistic Pricing Math based on category
     let basePrice = 35 + (i % 7) * 25;
     if (category === 'Health & Beauty') basePrice += 40;
     if (category === 'Computers & Acc.') basePrice += 110;
     
     const freight = 12 + (i % 5) * 4;
-    const review = (3 + (i % 3) * 0.9).toFixed(1);
+    const review = (3.4 + (i % 4) * 0.4).toFixed(1);
     const dateStr = `${year}-${(monthIndex + 1).toString().padStart(2, '0')}-15`;
 
     masterDataset.push({
@@ -134,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const olistChartCanvas = document.getElementById('olist-chart');
   let olistChart = null;
 
-  // Filter Master Dataset based on current Slicers
   function getFilteredDataset() {
     const selYear = filterYear ? filterYear.value : 'all';
     const selCat = filterCategory ? filterCategory.value : 'all';
@@ -148,18 +146,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Update Dynamic Dashboard & Chart
   function updateDynamicDashboard() {
     const filteredData = getFilteredDataset();
 
-    // Recalculate KPIs
     const totalOrdersCount = filteredData.length;
     const totalRevVal = filteredData.reduce((sum, r) => sum + r.revenue, 0);
     const avgAovVal = totalOrdersCount > 0 ? totalRevVal / totalOrdersCount : 0;
     const avgReviewVal = totalOrdersCount > 0 ? (filteredData.reduce((sum, r) => sum + r.review, 0) / totalOrdersCount) : 0;
 
-    // Update KPI Text (Multiplied by realistic scale factor for display)
-    const scaleFactor = 115; // Represents sample scaling to 1M+ transactions
+    const scaleFactor = 115;
     const scaledRev = totalRevVal * scaleFactor;
     const scaledOrders = totalOrdersCount * scaleFactor;
 
@@ -168,10 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (kpiAov) kpiAov.innerText = `$${avgAovVal.toFixed(2)}`;
     if (kpiReview) kpiReview.innerText = `${avgReviewVal.toFixed(2)} / 5.0`;
 
-    // Render Dynamic Visual Chart based on Selected Metric
     renderDynamicChart(filteredData);
-
-    // Update Raw Inspector Table Rows
     renderInspectorTableRows(filteredData);
   }
 
@@ -197,9 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } else if (dimension === 'orders') {
       chartType = 'line';
-      datasetLabel = 'Monthly Order Trend';
-      labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      chartData = labels.map(m => {
+      datasetLabel = 'Monthly Order Trend (Olist Timeline)';
+      labels = months;
+      chartData = months.map(m => {
         return dataset.filter(r => r.month === m).length * 115;
       });
       bgColors = '#00f2fe';
@@ -223,21 +215,19 @@ document.addEventListener('DOMContentLoaded', () => {
       bgColors = ['#00f2fe', '#6366f1', '#8b5cf6', '#10b981'];
     }
 
-    const configDatasets = [{
-      label: datasetLabel,
-      data: chartData,
-      backgroundColor: bgColors,
-      borderColor: chartType === 'line' ? '#00f2fe' : undefined,
-      fill: chartType === 'line',
-      tension: 0.4,
-      borderRadius: chartType === 'bar' ? 8 : 0
-    }];
-
     olistChart = new Chart(olistChartCanvas, {
       type: chartType,
       data: {
         labels: labels,
-        datasets: configDatasets
+        datasets: [{
+          label: datasetLabel,
+          data: chartData,
+          backgroundColor: bgColors,
+          borderColor: chartType === 'line' ? '#00f2fe' : undefined,
+          fill: chartType === 'line',
+          tension: 0.4,
+          borderRadius: chartType === 'bar' ? 8 : 0
+        }]
       },
       options: {
         responsive: true,
@@ -268,13 +258,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Render Rows in Raw Data Inspector Table
   function renderInspectorTableRows(dataset) {
     const tbody = document.getElementById('master-data-tbody');
     if (!tbody) return;
 
     let html = '';
-    const rowsToDisplay = dataset.slice(0, 8); // Display first 8 matching rows
+    const rowsToDisplay = dataset.slice(0, 8);
 
     if (rowsToDisplay.length === 0) {
       tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; color:#9ca3af;">No matching rows found for current slicer selection.</td></tr>';
@@ -297,7 +286,6 @@ document.addEventListener('DOMContentLoaded', () => {
     tbody.innerHTML = html;
   }
 
-  // Toggle Collapsible Inspector Table
   const toggleInspectorBtn = document.getElementById('toggle-data-inspector-btn');
   const inspectorWrapper = document.getElementById('inspector-table-wrapper');
   if (toggleInspectorBtn && inspectorWrapper) {
@@ -311,19 +299,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Add Event Listeners for Slicers
   [filterYear, filterCategory, filterState, chartMetricSelect].forEach(el => {
     if (el) el.addEventListener('change', () => {
       updateDynamicDashboard();
-      showToast('Dynamic Power BI Slicers Recalculated Dashboard!');
     });
   });
 
-  // Initial Load
   updateDynamicDashboard();
 
   // --------------------------------------------------------------------------
-  // 3. PROJECT 2: STATISTICAL A/B TESTING Z-TEST CALCULATOR
+  // 3. PROJECT 2: RECONCILED A/B TESTING Z-TEST CALCULATOR (ab_data.csv SINGLE SOURCE)
   // --------------------------------------------------------------------------
   const inputNa = document.getElementById('input-na');
   const inputXa = document.getElementById('input-xa');
@@ -399,10 +384,10 @@ document.addEventListener('DOMContentLoaded', () => {
     valPb.innerText = (pB * 100).toFixed(2) + '%';
 
     resDiff.innerText = (diff >= 0 ? '+' : '') + (diff * 100).toFixed(2) + '%';
-    resZ.innerText = zScore.toFixed(3);
+    resZ.innerText = Math.abs(zScore).toFixed(3);
     resP.innerText = pValue.toFixed(4);
 
-    if (pValue < alpha) {
+    if (pValue < alpha && diff > 0) {
       verdictBox.className = 'verdict-card significant';
       verdictTitle.innerHTML = '<i class="fa-solid fa-circle-check"></i> STATISTICALLY SIGNIFICANT UPLIFT';
       verdictDesc.innerText = `The observed conversion difference (${(diff * 100).toFixed(2)}%) has a p-value of ${pValue.toFixed(4)} (< α ${alpha}). We REJECT the null hypothesis (H₀). The new landing page design produces a statistically significant performance boost.`;
@@ -422,16 +407,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   calculateABTest();
 
+  // Load Exact ab_data.csv Experiment Results
   const loadExpBtn = document.getElementById('load-experiment-data-btn');
   if (loadExpBtn) {
     loadExpBtn.addEventListener('click', () => {
-      inputNa.value = 5000;
-      inputXa.value = 600;
-      inputNb.value = 5000;
-      inputXb.value = 640;
+      inputNa.value = 145274;
+      inputXa.value = 17472;
+      inputNb.value = 145311;
+      inputXb.value = 17264;
       inputAlpha.value = 0.05;
       calculateABTest();
-      showToast('Loaded Landing Page A/B Experiment Data (n=5,000)');
+      showToast('Loaded Exact ab_data.csv Experiment Results (N=290,585)');
     });
   }
 
@@ -467,18 +453,18 @@ LIMIT 5;`,
       ]
     },
     q2: {
-      sql: `-- A/B Landing Page Conversion Rate Analysis
+      sql: `-- A/B Landing Page Conversion Rate Analysis (ab_data.csv)
 SELECT 
-    experiment_variant AS Variant_Group,
+    group_name AS Variant_Group,
     COUNT(user_id) AS Total_Visitors,
     SUM(converted) AS Converted_Users,
     ROUND(AVG(converted) * 100, 2) AS Conversion_Rate_Pct
-FROM ab_landing_page_logs
+FROM ab_data
 GROUP BY 1;`,
       headers: ['Variant_Group', 'Total_Visitors', 'Converted_Users', 'Conversion_Rate_Pct'],
       data: [
-        ['Control (Old Page)', '5,000', '600', '12.00%'],
-        ['Treatment (New Page)', '5,000', '640', '12.80%']
+        ['Control (Old Page)', '145,274', '17,472', '12.02%'],
+        ['Treatment (New Page)', '145,311', '17,264', '11.88%']
       ]
     },
     q3: {
@@ -517,11 +503,11 @@ ORDER BY Year_Month DESC
 LIMIT 5;`,
       headers: ['Year_Month', 'Monthly_Revenue', 'MoM_Growth_Pct'],
       data: [
-        ['2026-03', '$214,000.00', '+11.46%'],
-        ['2026-02', '$192,000.00', '+14.28%'],
-        ['2026-01', '$168,000.00', '-31.42%'],
-        ['2025-12', '$245,000.00', '+29.62%'],
-        ['2025-11', '$189,000.00', '+33.09%']
+        ['2018-08', '$214,000.00', '+11.46%'],
+        ['2018-07', '$192,000.00', '+14.28%'],
+        ['2018-06', '$168,000.00', '-31.42%'],
+        ['2018-05', '$245,000.00', '+29.62%'],
+        ['2018-04', '$189,000.00', '+33.09%']
       ]
     }
   };
@@ -545,7 +531,7 @@ LIMIT 5;`,
       });
       html += '</tr>';
     });
-    html += 'tbody></table>';
+    html += '</tbody></table>';
 
     sqlResultTableContainer.innerHTML = html;
   }
@@ -581,12 +567,6 @@ LIMIT 5;`,
   const openResumeBtn = document.getElementById('open-resume-btn');
   const closeResumeBtn = document.getElementById('close-resume-btn');
 
-  if (openResumeBtn && resumeModal) {
-    openResumeBtn.addEventListener('click', () => {
-      resumeModal.classList.add('active');
-    });
-  }
-
   if (closeResumeBtn && resumeModal) {
     closeResumeBtn.addEventListener('click', () => {
       resumeModal.classList.remove('active');
@@ -605,10 +585,8 @@ LIMIT 5;`,
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
       const name = document.getElementById('contact-name').value;
-      showToast(`Thank you ${name}! Message dispatched to Chukka Mohan.`);
-      contactForm.reset();
+      showToast(`Thank you ${name}! Message sent.`);
     });
   }
 
@@ -623,7 +601,6 @@ LIMIT 5;`,
     });
   });
 
-  // Helper Toast Notification Function
   function showToast(message) {
     const container = document.getElementById('toast-container');
     if (!container) return;
