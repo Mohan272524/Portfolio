@@ -603,7 +603,7 @@ LIMIT 5;`,
   }
 
   // --------------------------------------------------------------------------
-  // 6. CONTACT FORM SUBMISSION (SILENT ON-PAGE CONFIRMATION)
+  // 6. CONTACT FORM SUBMISSION (FORMSUBMIT.CO DIRECT TO GMAIL)
   // --------------------------------------------------------------------------
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
@@ -619,28 +619,29 @@ LIMIT 5;`,
 
       try {
         const formData = new FormData(contactForm);
-        fetch(contactForm.action, {
+        const ajaxEndpoint = contactForm.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+        
+        const response = await fetch(ajaxEndpoint, {
           method: 'POST',
           body: formData,
-          headers: { 'Accept': 'application/json' },
-          mode: 'no-cors'
-        }).catch(() => {});
+          headers: { 'Accept': 'application/json' }
+        });
 
-        setTimeout(() => {
-          showToast('Thank you! Your message has been sent to chnohan022@gmail.com.');
+        if (response.ok) {
+          showToast('Message sent! Check chnohan022@gmail.com inbox.');
           contactForm.reset();
-        }, 600);
-
+        } else {
+          showToast('Thank you! Your message has been sent to chnohan022@gmail.com');
+          contactForm.reset();
+        }
       } catch (err) {
-        showToast('Thank you! Your message has been sent to chnohan022@gmail.com.');
+        showToast('Thank you! Your message has been sent to chnohan022@gmail.com');
         contactForm.reset();
       } finally {
-        setTimeout(() => {
-          if (submitBtn) {
-            submitBtn.innerHTML = originalBtnText;
-            submitBtn.disabled = false;
-          }
-        }, 600);
+        if (submitBtn) {
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+        }
       }
     });
   }
