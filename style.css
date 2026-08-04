@@ -825,19 +825,36 @@ body {
 }
 
 .custom-select {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-main);
-  border: 1px solid var(--border-color);
-  padding: 0.5rem 1rem;
+  background: #121828;
+  color: #ffffff;
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  padding: 0.55rem 1rem;
   border-radius: 8px;
   font-family: var(--font-sans);
   font-size: 0.9rem;
   cursor: pointer;
+  transition: var(--transition-fast);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%2300f2fe' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25rem;
+  padding-right: 2.5rem;
 }
 
-.custom-select:focus {
+.custom-select:hover, .custom-select:focus {
   outline: none;
   border-color: var(--primary-cyan);
+  background-color: #1a2236;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+}
+
+.custom-select option {
+  background-color: #121828 !important;
+  color: #ffffff !important;
+  padding: 0.5rem 1rem;
 }
 
 .kpi-row {
