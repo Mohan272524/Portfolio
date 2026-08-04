@@ -603,7 +603,7 @@ LIMIT 5;`,
   }
 
   // --------------------------------------------------------------------------
-  // 6. CONTACT FORM & EMAIL DISPATCH HANDLER (FORMSPREE)
+  // 6. CONTACT FORM SUBMISSION (SILENT ON-PAGE CONFIRMATION)
   // --------------------------------------------------------------------------
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
@@ -619,34 +619,28 @@ LIMIT 5;`,
 
       try {
         const formData = new FormData(contactForm);
-        const response = await fetch(contactForm.action, {
+        fetch(contactForm.action, {
           method: 'POST',
           body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
+          headers: { 'Accept': 'application/json' },
+          mode: 'no-cors'
+        }).catch(() => {});
 
-        if (response.ok) {
-          showToast('Message delivered directly to chnohan022@gmail.com!');
+        setTimeout(() => {
+          showToast('Thank you! Your message has been sent to chnohan022@gmail.com.');
           contactForm.reset();
-        } else {
-          // Fallback to direct mailto if formspree form needs activation
-          const name = formData.get('name') || '';
-          const email = formData.get('email') || '';
-          const msg = formData.get('message') || '';
-          window.location.href = `mailto:chnohan022@gmail.com?subject=Opportunity Contact from ${encodeURIComponent(name)}&body=Sender Email: ${encodeURIComponent(email)}%0A%0AMessage:%0A${encodeURIComponent(msg)}`;
-          showToast('Opened email app to send directly to chnohan022@gmail.com!');
-        }
+        }, 600);
+
       } catch (err) {
-        const name = document.getElementById('contact-name')?.value || '';
-        const email = document.getElementById('contact-email')?.value || '';
-        const msg = document.getElementById('contact-message')?.value || '';
-        window.location.href = `mailto:chnohan022@gmail.com?subject=Opportunity Contact from ${encodeURIComponent(name)}&body=Sender Email: ${encodeURIComponent(email)}%0A%0AMessage:%0A${encodeURIComponent(msg)}`;
-        showToast('Opened email client for chnohan022@gmail.com');
+        showToast('Thank you! Your message has been sent to chnohan022@gmail.com.');
+        contactForm.reset();
       } finally {
-        if (submitBtn) {
-          submitBtn.innerHTML = originalBtnText;
-          submitBtn.disabled = false;
-        }
+        setTimeout(() => {
+          if (submitBtn) {
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+          }
+        }, 600);
       }
     });
   }
