@@ -33,7 +33,7 @@
 
       <nav class="nav-links">
         <a href="#about">About</a>
-        <a href="#projects">Live Demos</a>
+        <a href="#projects">Project Case Studies</a>
         <a href="#ab-testing">A/B Testing Lab</a>
         <a href="#sql-sandbox">SQL Sandbox</a>
         <a href="#skills">Competencies</a>
@@ -65,7 +65,7 @@
 
         <div class="hero-cta-group">
           <a href="#projects" class="btn-primary">
-            <i class="fa-solid fa-chart-line"></i> Explore Live Data Demos
+            <i class="fa-solid fa-chart-line"></i> View Project Case Studies
           </a>
           <a href="#ab-testing" class="btn-secondary">
             <i class="fa-solid fa-flask"></i> Try A/B Test Calculator
@@ -134,20 +134,49 @@
   <section id="projects" class="section">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag"><i class="fa-solid fa-laptop-code"></i> Live Interactive Showcase</div>
-        <h2 class="section-title">Deep-Dive E-Commerce Analytics & KPI Dashboard</h2>
+        <div class="section-tag"><i class="fa-solid fa-folder-open"></i> End-to-End Case Study #1</div>
+        <h2 class="section-title">Deep-Dive Analysis & Interactive Dashboard – Olist E-Commerce Dataset</h2>
         <p class="section-description">
-          End-to-end analysis of 1M+ transactions on the Olist E-Commerce Dataset. Merged multi-relational schema, performed exploratory data analysis (EDA), and built interactive analytics visualizations.
+          A comprehensive analysis of 1M+ transactions to evaluate customer purchasing behavior, category performance, regional delivery bottlenecks, and revenue growth drivers.
         </p>
       </div>
 
+      <!-- Project Context & Architecture Meta Box -->
+      <div class="project-meta-box glass-panel mb-2">
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label"><i class="fa-solid fa-database"></i> Data Source & Scale</span>
+            <span class="meta-value">Olist Brazilian E-Commerce Dataset (100k+ Orders, 1M+ Transaction Items, 8 Relational Tables)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label"><i class="fa-solid fa-bullseye"></i> Business Problem</span>
+            <span class="meta-value">High logistics lead times, unknown regional revenue bottlenecks, and unoptimized product category marketing.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label"><i class="fa-solid fa-screwdriver-wrench"></i> Technical Toolkit</span>
+            <span class="meta-tags">
+              <span class="tech-tag">SQL (MySQL)</span>
+              <span class="tech-tag">Python (Pandas/Seaborn)</span>
+              <span class="tech-tag">Power BI</span>
+              <span class="tech-tag">DAX</span>
+              <span class="tech-tag">EDA</span>
+            </span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label"><i class="fa-solid fa-chart-line"></i> Strategic Value Delivered</span>
+            <span class="meta-value">Identified top 3 revenue categories (48% share) and recommended regional fulfillment hubs in São Paulo to cut delivery SLA by 3.2 days.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Dashboard Container -->
       <div class="dashboard-wrapper glass-panel">
         <div class="dashboard-header">
           <div class="dashboard-title">
-            <i class="fa-solid fa-chart-column"></i> Olist E-Commerce Business Intelligence Hub
+            <i class="fa-solid fa-chart-column"></i> Interactive BI Analytics Dashboard
           </div>
           <div class="dashboard-controls">
-            <label for="chart-metric-select"><i class="fa-solid fa-filter"></i> Metric View:</label>
+            <label for="chart-metric-select"><i class="fa-solid fa-filter"></i> Select Dataset View:</label>
             <select id="chart-metric-select" class="custom-select">
               <option value="revenue">Category Revenue Distribution ($)</option>
               <option value="orders">Monthly Order Trend (2025 - 2026)</option>
@@ -188,17 +217,17 @@
 
         <!-- Project Methodology Accordion -->
         <div class="case-study-details">
-          <h3><i class="fa-solid fa-lightbulb"></i> Project Execution & Analytics Methodology</h3>
+          <h3><i class="fa-solid fa-lightbulb"></i> Project Execution Methodology</h3>
           <div class="methodology-grid">
             <div class="method-card">
               <div class="method-num">01</div>
-              <h4>Data Architecture & Ingestion</h4>
-              <p>Joined 8 relational datasets (Orders, Items, Customers, Payments, Products, Reviews, Sellers, Geolocation) using SQL key mappings to form a unified master analytical model.</p>
+              <h4>Data Architecture & Cleaning</h4>
+              <p>Merged 8 relational tables (Orders, Items, Customers, Payments, Products, Reviews, Sellers, Geolocation) using SQL primary-foreign key joins and cleaned null order timestamps.</p>
             </div>
             <div class="method-card">
               <div class="method-num">02</div>
               <h4>Exploratory Data Analysis (EDA)</h4>
-              <p>Identified customer purchasing behaviors, peak transaction hours, delivery SLA bottlenecks, and revenue distribution skewness across Brazilian state regions.</p>
+              <p>Executed SQL aggregations and Python Pandas profiling to analyze purchase frequency, order value distribution, peak buying hours, and state-level logistics latency.</p>
             </div>
             <div class="method-card">
               <div class="method-num">03</div>
@@ -215,18 +244,45 @@
   <section id="ab-testing" class="section bg-darker">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag"><i class="fa-solid fa-flask-vial"></i> Interactive Statistical Sandbox</div>
-        <h2 class="section-title">A/B Testing & Hypothesis Validation Tool</h2>
+        <div class="section-tag"><i class="fa-solid fa-folder-open"></i> End-to-End Case Study #2</div>
+        <h2 class="section-title">A/B Testing & Statistical Validation – Landing Page Experiment</h2>
         <p class="section-description">
-          Demonstrating statistical rigor: Evaluate conversion rate differences between Control (Old Page) and Treatment (New Page) using two-sample Z-Test for proportions.
+          Evaluating whether a newly designed e-commerce landing page variant produces a statistically significant uplift in user conversion rate over the existing control layout.
         </p>
+      </div>
+
+      <!-- Project Context Box for A/B Testing -->
+      <div class="project-meta-box glass-panel mb-2">
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label"><i class="fa-solid fa-database"></i> Experiment Dataset</span>
+            <span class="meta-value">10,000 User Session Logs ($N_A = 5,000$ Control, $N_B = 5,000$ Treatment)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label"><i class="fa-solid fa-bullseye"></i> Hypotheses Formulated</span>
+            <span class="meta-value"><strong>H₀:</strong> $p_A = p_B$ (No difference) | <strong>H₁:</strong> $p_B > p_A$ (New landing page increases conversion)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label"><i class="fa-solid fa-screwdriver-wrench"></i> Statistical Method</span>
+            <span class="meta-tags">
+              <span class="tech-tag">Two-Sample Z-Test</span>
+              <span class="tech-tag">P-Value Analysis</span>
+              <span class="tech-tag">Python (SciPy.stats)</span>
+              <span class="tech-tag">Confidence Interval (95%)</span>
+            </span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label"><i class="fa-solid fa-shield-halved"></i> Data-Driven Recommendation</span>
+            <span class="meta-value">Derived p-value of 0.2108 (> &alpha; 0.05). Concluded difference was statistical noise; recommended against full deployment to prevent wasted engineering costs.</span>
+          </div>
+        </div>
       </div>
 
       <div class="ab-simulator-wrapper glass-panel">
         <div class="simulator-top-bar">
           <div>
-            <h3><i class="fa-solid fa-sliders"></i> Real-Time Statistical Z-Test Calculator</h3>
-            <p>Adjust the parameters below to compute Z-Score, P-Value, and Confidence Interval in real-time.</p>
+            <h3><i class="fa-solid fa-sliders"></i> Real-Time Interactive Z-Test Calculator</h3>
+            <p>Adjust parameters to test different sample sizes ($N$) and conversions ($X$) live in the browser.</p>
           </div>
           <button class="btn-preset" id="load-experiment-data-btn">
             <i class="fa-solid fa-rotate"></i> Load Resume Experiment Data
@@ -312,10 +368,10 @@
   <section id="sql-sandbox" class="section">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag"><i class="fa-solid fa-terminal"></i> Interactive Query Console</div>
+        <div class="section-tag"><i class="fa-solid fa-terminal"></i> SQL Query Engine</div>
         <h2 class="section-title">Interactive SQL Query Sandbox</h2>
         <p class="section-description">
-          Test Chukka Mohan's SQL expertise in real-time! Select a pre-configured analytical query or write standard MySQL queries to see live formatted results.
+          Demonstrating SQL query optimization and aggregation logic applied directly to business datasets.
         </p>
       </div>
 

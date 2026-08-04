@@ -88,6 +88,10 @@ body {
   color: var(--primary-cyan);
 }
 
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
 /* Navigation Bar */
 .navbar {
   position: fixed;
@@ -450,6 +454,60 @@ body {
 .section-description {
   color: var(--text-muted);
   font-size: 1.05rem;
+}
+
+/* Project Meta Box / Context Cards */
+.project-meta-box {
+  padding: 1.75rem 2rem;
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  background: rgba(11, 15, 25, 0.7);
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.meta-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--primary-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.meta-value {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.meta-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.2rem;
+}
+
+.tech-tag {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
 }
 
 /* Project 1 Dashboard Component */
