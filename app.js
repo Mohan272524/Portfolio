@@ -603,13 +603,51 @@ LIMIT 5;`,
   }
 
   // --------------------------------------------------------------------------
-  // 6. CONTACT FORM & COPY TO CLIPBOARD
+  // 6. CONTACT FORM & EMAIL DISPATCH HANDLER (FORMSPREE)
   // --------------------------------------------------------------------------
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      const name = document.getElementById('contact-name').value;
-      showToast(`Thank you ${name}! Message sent.`);
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Send Direct Message';
+
+      if (submitBtn) {
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending Message...';
+        submitBtn.disabled = true;
+      }
+
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          showToast('Message delivered directly to chnohan022@gmail.com!');
+          contactForm.reset();
+        } else {
+          // Fallback to direct mailto if formspree form needs activation
+          const name = formData.get('name') || '';
+          const email = formData.get('email') || '';
+          const msg = formData.get('message') || '';
+          window.location.href = `mailto:chnohan022@gmail.com?subject=Opportunity Contact from ${encodeURIComponent(name)}&body=Sender Email: ${encodeURIComponent(email)}%0A%0AMessage:%0A${encodeURIComponent(msg)}`;
+          showToast('Opened email app to send directly to chnohan022@gmail.com!');
+        }
+      } catch (err) {
+        const name = document.getElementById('contact-name')?.value || '';
+        const email = document.getElementById('contact-email')?.value || '';
+        const msg = document.getElementById('contact-message')?.value || '';
+        window.location.href = `mailto:chnohan022@gmail.com?subject=Opportunity Contact from ${encodeURIComponent(name)}&body=Sender Email: ${encodeURIComponent(email)}%0A%0AMessage:%0A${encodeURIComponent(msg)}`;
+        showToast('Opened email client for chnohan022@gmail.com');
+      } finally {
+        if (submitBtn) {
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+        }
+      }
     });
   }
 
