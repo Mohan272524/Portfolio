@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chukka Mohan | Senior Data Analyst Portfolio</title>
+  <meta name="description" content="Portfolio of Chukka Mohan - Data Analyst specializing in Predictive Modeling, A/B Testing, SQL, Python, Power BI, and Business Analytics across 1M+ transactions.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome & Chart.js via CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+
+  <!-- Background Animated Particles Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-badge">CM</span>
+        <span class="logo-text">Chukka<span class="highlight">Mohan</span></span>
+      </a>
+
+      <!-- Recruiter Persona Switcher -->
+      <div class="persona-switcher" id="persona-switcher">
+        <span class="persona-label"><i class="fa-solid fa-sliders"></i> Recruiter Mode:</span>
+        <button class="persona-btn active" data-persona="recruiter" title="Highlights key metrics, education & quick facts">
+          <i class="fa-solid fa-briefcase"></i> Recruiter Overview
+        </button>
+        <button class="persona-btn" data-persona="techlead" title="Focuses on SQL code, statistical Z-tests & Python models">
+          <i class="fa-solid fa-code"></i> Data Lead View
+        </button>
+        <button class="persona-btn" data-persona="executive" title="Focuses on business value, conversion rates & insights">
+          <i class="fa-solid fa-chart-pie"></i> Executive View
+        </button>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Live Demos</a>
+        <a href="#ab-testing">A/B Testing Lab</a>
+        <a href="#sql-sandbox">SQL Sandbox</a>
+        <a href="#skills">Competencies</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact" class="btn-primary-sm">Contact Me</a>
+      </nav>
+
+      <button class="mobile-menu-btn" id="mobile-menu-btn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="about" class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="status-pill">
+          <span class="status-dot"></span> Available for Data Analyst Roles & Opportunities
+        </div>
+
+        <h1 class="hero-title">
+          Translating <span class="gradient-text">1M+ Transactions</span> into High-Impact Business Decisions
+        </h1>
+
+        <p class="hero-subtitle">
+          Data Analyst with hands-on experience delivering end-to-end analytics, interactive Power BI dashboards, predictive modeling, and rigorous A/B statistical testing.
+        </p>
+
+        <!-- Dynamic Persona Banner (Changes based on Recruiter Switcher) -->
+        <div class="persona-banner" id="persona-banner">
+          <i class="fa-solid fa-circle-info"></i>
+          <span id="persona-banner-text"><strong>Recruiter Fast Fact:</strong> B-Tech CSE (CyberSecurity) with 9.01 CGPA, 1M+ transactions analyzed, certified in Oracle HeatWave & Aviatrix.</span>
+        </div>
+
+        <div class="hero-cta-group">
+          <a href="#projects" class="btn-primary">
+            <i class="fa-solid fa-chart-line"></i> Explore Live Data Demos
+          </a>
+          <a href="#ab-testing" class="btn-secondary">
+            <i class="fa-solid fa-flask"></i> Try A/B Test Calculator
+          </a>
+          <button class="btn-glass" id="open-resume-btn">
+            <i class="fa-solid fa-file-pdf"></i> View & Download Resume
+          </button>
+        </div>
+
+        <!-- Social Badges -->
+        <div class="hero-socials">
+          <a href="https://github.com/Mohan272524" target="_blank" rel="noopener" title="GitHub Profile">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/chukka-mohan" target="_blank" rel="noopener" title="LinkedIn Profile">
+            <i class="fa-brands fa-linkedin"></i> LinkedIn
+          </a>
+          <a href="mailto:chnohan022@gmail.com" title="Email Chukka Mohan">
+            <i class="fa-solid fa-envelope"></i> chnohan022@gmail.com
+          </a>
+          <a href="tel:+917780638435" title="Call Chukka Mohan">
+            <i class="fa-solid fa-phone"></i> +91 7780638435
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="avatar-card glass-panel">
+          <div class="avatar-glow"></div>
+          <img src="assets/avatar.jpg" alt="Chukka Mohan Badge" class="avatar-img">
+          <div class="avatar-info">
+            <h3>Chukka Mohan</h3>
+            <p>Data Analyst & Business Intelligence</p>
+            <span class="badge-education"><i class="fa-solid fa-graduation-cap"></i> Vignan's Institute (CGPA: 9.01)</span>
+          </div>
+        </div>
+
+        <!-- Quick Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card glass-panel">
+            <div class="stat-icon"><i class="fa-solid fa-database"></i></div>
+            <div class="stat-num" data-target="1000000">1M+</div>
+            <div class="stat-label">Transactions Analyzed</div>
+          </div>
+          <div class="stat-card glass-panel">
+            <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
+            <div class="stat-num">9.01</div>
+            <div class="stat-label">B-Tech CGPA</div>
+          </div>
+          <div class="stat-card glass-panel">
+            <div class="stat-icon"><i class="fa-solid fa-calculator"></i></div>
+            <div class="stat-num">95%</div>
+            <div class="stat-label">Z-Test Stat Confidence</div>
+          </div>
+          <div class="stat-card glass-panel">
+            <div class="stat-icon"><i class="fa-solid fa-certificate"></i></div>
+            <div class="stat-num">2</div>
+            <div class="stat-label">Cloud & DB Certifications</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Project 1: Olist E-Commerce Analytics Suite -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-laptop-code"></i> Live Interactive Showcase</div>
+        <h2 class="section-title">Deep-Dive E-Commerce Analytics & KPI Dashboard</h2>
+        <p class="section-description">
+          End-to-end analysis of 1M+ transactions on the Olist E-Commerce Dataset. Merged multi-relational schema, performed exploratory data analysis (EDA), and built interactive analytics visualizations.
+        </p>
+      </div>
+
+      <div class="dashboard-wrapper glass-panel">
+        <div class="dashboard-header">
+          <div class="dashboard-title">
+            <i class="fa-solid fa-chart-column"></i> Olist E-Commerce Business Intelligence Hub
+          </div>
+          <div class="dashboard-controls">
+            <label for="chart-metric-select"><i class="fa-solid fa-filter"></i> Metric View:</label>
+            <select id="chart-metric-select" class="custom-select">
+              <option value="revenue">Category Revenue Distribution ($)</option>
+              <option value="orders">Monthly Order Trend (2025 - 2026)</option>
+              <option value="regions">Geographic Sales Concentration</option>
+              <option value="payment">Payment Type Split</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Dashboard KPI Summary Cards -->
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <span class="kpi-title">Total Processed Revenue</span>
+            <span class="kpi-value" id="kpi-rev">$1,482,900</span>
+            <span class="kpi-trend positive"><i class="fa-solid fa-arrow-up"></i> +14.2% YoY</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Avg Order Value (AOV)</span>
+            <span class="kpi-value" id="kpi-aov">$137.40</span>
+            <span class="kpi-trend positive"><i class="fa-solid fa-arrow-up"></i> +5.8% MoM</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Top Revenue Category</span>
+            <span class="kpi-value" id="kpi-cat">Health & Beauty</span>
+            <span class="kpi-sub">24.5% Total Share</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Customer Repeat Rate</span>
+            <span class="kpi-value" id="kpi-ret">31.8%</span>
+            <span class="kpi-trend neutral"><i class="fa-solid fa-minus"></i> Steady</span>
+          </div>
+        </div>
+
+        <!-- Live Chart Canvas -->
+        <div class="chart-container">
+          <canvas id="olist-chart"></canvas>
+        </div>
+
+        <!-- Project Methodology Accordion -->
+        <div class="case-study-details">
+          <h3><i class="fa-solid fa-lightbulb"></i> Project Execution & Analytics Methodology</h3>
+          <div class="methodology-grid">
+            <div class="method-card">
+              <div class="method-num">01</div>
+              <h4>Data Architecture & Ingestion</h4>
+              <p>Joined 8 relational datasets (Orders, Items, Customers, Payments, Products, Reviews, Sellers, Geolocation) using SQL key mappings to form a unified master analytical model.</p>
+            </div>
+            <div class="method-card">
+              <div class="method-num">02</div>
+              <h4>Exploratory Data Analysis (EDA)</h4>
+              <p>Identified customer purchasing behaviors, peak transaction hours, delivery SLA bottlenecks, and revenue distribution skewness across Brazilian state regions.</p>
+            </div>
+            <div class="method-card">
+              <div class="method-num">03</div>
+              <h4>Business Impact & Strategy</h4>
+              <p>Recommended strategic regional inventory placement in South-East state clusters, cutting average delivery lead times by 3.2 days and increasing customer review scores.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Project 2: A/B Testing & Statistical Validation Simulator -->
+  <section id="ab-testing" class="section bg-darker">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-flask-vial"></i> Interactive Statistical Sandbox</div>
+        <h2 class="section-title">A/B Testing & Hypothesis Validation Tool</h2>
+        <p class="section-description">
+          Demonstrating statistical rigor: Evaluate conversion rate differences between Control (Old Page) and Treatment (New Page) using two-sample Z-Test for proportions.
+        </p>
+      </div>
+
+      <div class="ab-simulator-wrapper glass-panel">
+        <div class="simulator-top-bar">
+          <div>
+            <h3><i class="fa-solid fa-sliders"></i> Real-Time Statistical Z-Test Calculator</h3>
+            <p>Adjust the parameters below to compute Z-Score, P-Value, and Confidence Interval in real-time.</p>
+          </div>
+          <button class="btn-preset" id="load-experiment-data-btn">
+            <i class="fa-solid fa-rotate"></i> Load Resume Experiment Data
+          </button>
+        </div>
+
+        <div class="simulator-grid">
+          <!-- Inputs Column -->
+          <div class="simulator-inputs">
+            <h4><i class="fa-solid fa-users"></i> Experiment Parameters</h4>
+            
+            <!-- Control Group Inputs -->
+            <div class="input-group">
+              <label>Control Group (Page A) Visitors ($N_A$): <strong id="val-na">5,000</strong></label>
+              <input type="range" id="input-na" min="1000" max="20000" step="500" value="5000">
+            </div>
+
+            <div class="input-group">
+              <label>Control Conversions ($X_A$): <strong id="val-xa">600</strong> (<span id="val-pa">12.0%</span>)</label>
+              <input type="range" id="input-xa" min="50" max="4000" step="10" value="600">
+            </div>
+
+            <!-- Treatment Group Inputs -->
+            <div class="input-group">
+              <label>Treatment Group (Page B) Visitors ($N_B$): <strong id="val-nb">5,000</strong></label>
+              <input type="range" id="input-nb" min="1000" max="20000" step="500" value="5000">
+            </div>
+
+            <div class="input-group">
+              <label>Treatment Conversions ($X_B$): <strong id="val-xb">640</strong> (<span id="val-pb">12.8%</span>)</label>
+              <input type="range" id="input-xb" min="50" max="4000" step="10" value="640">
+            </div>
+
+            <!-- Significance Level -->
+            <div class="input-group">
+              <label>Significance Threshold ($\alpha$):</label>
+              <select id="input-alpha" class="custom-select">
+                <option value="0.05" selected>&alpha; = 0.05 (95% Confidence Level)</option>
+                <option value="0.01">&alpha; = 0.01 (99% Confidence Level)</option>
+                <option value="0.10">&alpha; = 0.10 (90% Confidence Level)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Live Output Column -->
+          <div class="simulator-results">
+            <h4><i class="fa-solid fa-square-poll-vertical"></i> Statistical Output & Hypothesis Decision</h4>
+
+            <div class="results-cards">
+              <div class="res-card">
+                <span class="res-label">Conversion Difference (&Delta;p)</span>
+                <span class="res-val" id="res-diff">+0.80%</span>
+              </div>
+              <div class="res-card">
+                <span class="res-label">Calculated Z-Score</span>
+                <span class="res-val" id="res-z">1.251</span>
+              </div>
+              <div class="res-card">
+                <span class="res-label">P-Value (Two-Tailed)</span>
+                <span class="res-val" id="res-p">0.2108</span>
+              </div>
+            </div>
+
+            <!-- Verdict Badge -->
+            <div class="verdict-card neutral" id="verdict-box">
+              <div class="verdict-title" id="verdict-title">NOT STATISTICALLY SIGNIFICANT</div>
+              <p class="verdict-desc" id="verdict-desc">
+                The observed conversion difference (+0.80%) has a p-value of 0.2108 (> &alpha; 0.05). We fail to reject the null hypothesis ($H_0$). The new landing page design does NOT provide a statistically significant uplift.
+              </p>
+            </div>
+
+            <div class="formula-box">
+              <div class="formula-title"><i class="fa-solid fa-square-root-variable"></i> Statistical Formula Applied</div>
+              <code>Z = (p&#770;<sub>B</sub> - p&#770;<sub>A</sub>) / &radic;[ p&#770;(1-p&#770;)(1/N<sub>A</sub> + 1/N<sub>B</sub>) ]</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive SQL Sandbox -->
+  <section id="sql-sandbox" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-terminal"></i> Recruiter Interactive Query Console</div>
+        <h2 class="section-title">Interactive SQL Query Sandbox</h2>
+        <p class="section-description">
+          Test Chukka Mohan's SQL expertise in real-time! Select a pre-configured analytical query or write standard MySQL queries to see live formatted results.
+        </p>
+      </div>
+
+      <div class="sql-console glass-panel">
+        <div class="console-header">
+          <div class="console-tabs">
+            <button class="sql-preset-btn active" data-query="q1">1. Top Revenue Categories</button>
+            <button class="sql-preset-btn" data-query="q2">2. A/B Group Conversion</button>
+            <button class="sql-preset-btn" data-query="q3">3. Customer Retention Rate</button>
+            <button class="sql-preset-btn" data-query="q4">4. MoM Growth Rate</button>
+          </div>
+          <button class="btn-run-sql" id="run-sql-btn">
+            <i class="fa-solid fa-play"></i> Execute Query
+          </button>
+        </div>
+
+        <div class="editor-area">
+          <div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8</div>
+          <textarea id="sql-editor-textarea" spellcheck="false" class="code-font"></textarea>
+        </div>
+
+        <div class="console-output">
+          <div class="output-header">
+            <span><i class="fa-solid fa-table"></i> Query Execution Result</span>
+            <span class="query-status" id="query-status"><i class="fa-solid fa-circle-check"></i> Status: OK (0.012 sec)</span>
+          </div>
+          <div class="table-responsive" id="sql-result-table-container">
+            <!-- Dynamic SQL Table Rendered Here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Competencies Matrix -->
+  <section id="skills" class="section bg-darker">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-cubes"></i> Domain Expertise</div>
+        <h2 class="section-title">Core Competencies & Technical Skills</h2>
+        <p class="section-description">
+          A balanced blend of advanced analytics methodologies, technical data toolkits, and strategic business skills.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <!-- Card 1: Data & Advanced Analytics -->
+        <div class="skill-category-card glass-panel">
+          <div class="skill-icon"><i class="fa-solid fa-brain"></i></div>
+          <h3>Data & Advanced Analytics</h3>
+          <ul class="skill-list">
+            <li>
+              <div class="skill-name">Predictive Modeling <span>90%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width: 90%;"></div></div>
+            </li>
+            <li>
+              <div class="skill-name">Statistical Validation (Z-Test, T-Test) <span>95%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width: 95%;"></div></div>
+            </li>
+            <li>
+              <div class="skill-name">Exploratory Data Analysis (EDA) <span>98%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width: 98%;"></div></div>
+            </li>
+            <li>
+              <div class="skill-name">Behavioral Pattern Analysis <span>92%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width: 92%;"></div></div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Technical Toolkit -->
+        <div class="skill-category-card glass-panel">
+          <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+          <h3>Technical Toolkit</h3>
+          <ul class="skill-list">
+            <li>
+              <div class="skill-name">SQL (MySQL / SQLite / Aggregations) <span>95%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width: 95%;"></div></div>
+            </li>
+            <li>
+              <div class="skill-name">Python (Pandas, Seaborn, SciPy, Matplotlib) <span>92%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width: 92%;"></div></div>
+            </li>
+            <li>
+              <div class="skill-name">Power BI (DAX, Interactive Dashboards) <span>94%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width: 94%;"></div></div>
+            </li>
+            <li>
+              <div class="skill-name">Advanced Excel (VLOOKUP, Pivot Tables) <span>90%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width: 90%;"></div></div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 3: Business & Strategy -->
+        <div class="skill-category-card glass-panel">
+          <div class="skill-icon"><i class="fa-solid fa-bullseye"></i></div>
+          <h3>Business & Strategy</h3>
+          <ul class="skill-list">
+            <li>
+              <div class="skill-name">Hypothesis Testing (A/B Testing) <span>95%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width: 95%;"></div></div>
+            </li>
+            <li>
+              <div class="skill-name">Data Storytelling & Executive Briefs <span>92%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width: 92%;"></div></div>
+            </li>
+            <li>
+              <div class="skill-name">KPI Dashboarding & Metric Design <span>94%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width: 94%;"></div></div>
+            </li>
+            <li>
+              <div class="skill-name">Root Cause Analysis (RCA) <span>88%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width: 88%;"></div></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience & Education Timeline -->
+  <section id="experience" class="section">
+    <div class="container">
+      <div class="timeline-grid">
+
+        <!-- Experience Column -->
+        <div class="timeline-col">
+          <div class="section-tag"><i class="fa-solid fa-briefcase"></i> Work History</div>
+          <h2 class="col-title">Internship Experience</h2>
+
+          <div class="timeline-item glass-panel">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <h3>Data Analytics Intern</h3>
+              <span class="timeline-date">Feb 2026 – Apr 2026</span>
+            </div>
+            <h4 class="company-name"><i class="fa-solid fa-building"></i> ApexPlanet Software Pvt. Ltd.</h4>
+            <ul class="experience-bullets">
+              <li>Applied data analytics techniques to analyze complex business datasets and generate actionable insights for stakeholders.</li>
+              <li>Performed end-to-end exploratory data analysis (EDA), built interactive Power BI dashboards, and conducted statistical hypothesis testing using Python (SciPy/Pandas) and SQL.</li>
+              <li>Delivered revenue distribution and conversion insights across retail sales trends, e-commerce performance, and landing page experiment datasets.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Education & Certifications Column -->
+        <div class="timeline-col">
+          <div class="section-tag"><i class="fa-solid fa-graduation-cap"></i> Academic & Credentials</div>
+          <h2 class="col-title">Education & Certifications</h2>
+
+          <!-- Education Items -->
+          <div class="timeline-item glass-panel">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <h3>B-Tech CSE - CyberSecurity</h3>
+              <span class="timeline-date">2023 - 2027</span>
+            </div>
+            <h4 class="institution-name">Vignan's Institute of Information Technology</h4>
+            <div class="grade-badge">CGPA: <strong>9.01 / 10.0</strong></div>
+          </div>
+
+          <div class="timeline-item glass-panel">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <h3>Intermediate (MPC)</h3>
+              <span class="timeline-date">2021 - 2023</span>
+            </div>
+            <h4 class="institution-name">Tirumala Junior College</h4>
+            <div class="grade-badge">Percentage: <strong>97.8%</strong></div>
+          </div>
+
+          <div class="timeline-item glass-panel">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <h3>X Class Secondary Education</h3>
+              <span class="timeline-date">2020 - 2021</span>
+            </div>
+            <h4 class="institution-name">Gireesha's Shree Chaitanya English Medium School</h4>
+            <div class="grade-badge">Percentage: <strong>100%</strong></div>
+          </div>
+
+          <!-- Verified Certifications Grid -->
+          <div class="cert-grid">
+            <div class="cert-card glass-panel">
+              <i class="fa-solid fa-database cert-icon"></i>
+              <div>
+                <h4>Oracle Certified Associate</h4>
+                <p>MySQL HeatWave Implementation</p>
+              </div>
+            </div>
+            <div class="cert-card glass-panel">
+              <i class="fa-solid fa-cloud cert-icon"></i>
+              <div>
+                <h4>Aviatrix Certified Engineer</h4>
+                <p>Multicloud Network Associate</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Footer -->
+  <section id="contact" class="section bg-darker">
+    <div class="container">
+      <div class="contact-card glass-panel">
+        <div class="contact-header">
+          <div class="section-tag"><i class="fa-solid fa-paper-plane"></i> Get In Touch</div>
+          <h2>Let's Discuss How I Can Drive Data Insights For Your Team</h2>
+          <p>Open for Data Analyst, Business Intelligence Analyst, and Product Analyst roles.</p>
+        </div>
+
+        <div class="contact-content-grid">
+          <div class="contact-info-list">
+            <div class="info-item">
+              <i class="fa-solid fa-envelope"></i>
+              <div>
+                <span>Email Address</span>
+                <a href="mailto:chnohan022@gmail.com">chnohan022@gmail.com</a>
+              </div>
+              <button class="copy-btn" data-copy="chnohan022@gmail.com" title="Copy Email">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+
+            <div class="info-item">
+              <i class="fa-solid fa-phone"></i>
+              <div>
+                <span>Phone Number</span>
+                <a href="tel:+917780638435">+91 7780638435</a>
+              </div>
+              <button class="copy-btn" data-copy="+917780638435" title="Copy Phone">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+
+            <div class="info-item">
+              <i class="fa-brands fa-linkedin"></i>
+              <div>
+                <span>LinkedIn</span>
+                <a href="https://www.linkedin.com/in/chukka-mohan" target="_blank" rel="noopener">linkedin.com/in/chukka-mohan</a>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <i class="fa-brands fa-github"></i>
+              <div>
+                <span>GitHub Repository</span>
+                <a href="https://github.com/Mohan272524" target="_blank" rel="noopener">github.com/Mohan272524</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Message Form -->
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <label for="contact-name">Your Name</label>
+              <input type="text" id="contact-name" required placeholder="e.g. Sarah Jenkins (Senior Recruiter)">
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Your Email</label>
+              <input type="email" id="contact-email" required placeholder="e.g. sarah@techcorp.com">
+            </div>
+            <div class="form-group">
+              <label for="contact-message">Message / Role Details</label>
+              <textarea id="contact-message" rows="4" required placeholder="Hi Mohan, we have a Data Analyst position open at..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-block">
+              <i class="fa-solid fa-paper-plane"></i> Send Direct Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <p>&copy; 2026 Chukka Mohan. Designed & Engineered with Data Intelligence Aesthetics.</p>
+      <div class="footer-links">
+        <a href="#about">Top</a>
+        <a href="#projects">Projects</a>
+        <a href="#ab-testing">A/B Testing</a>
+        <a href="#sql-sandbox">SQL Sandbox</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Resume Modal -->
+  <div class="modal-overlay" id="resume-modal">
+    <div class="modal-content glass-panel">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-file-pdf"></i> Chukka Mohan - Professional Resume</h3>
+        <button class="modal-close-btn" id="close-resume-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="resume-preview-box">
+          <div class="resume-header-text">
+            <h2>CHUKKA MOHAN</h2>
+            <p>+91 7780638435 | chnohan022@gmail.com | github.com/Mohan272524 | linkedin.com/in/chukka-mohan</p>
+          </div>
+          <hr class="resume-divider">
+          
+          <div class="resume-section">
+            <h4>CAREER OBJECTIVE</h4>
+            <p>Data Analyst with hands-on experience in delivering end-to-end analytics across 1M+ transactions, to interactive Power BI dashboards that translate findings into business decisions.</p>
+          </div>
+
+          <div class="resume-section">
+            <h4>EDUCATION</h4>
+            <p><strong>B-Tech CSE-CyberSecurity</strong> | Vignan's Institute of Information Technology (2023 - 2027) - <strong>CGPA: 9.01</strong></p>
+            <p><strong>Intermediate</strong> | Tirumala Junior College (2021 - 2023) - <strong>97.8%</strong></p>
+            <p><strong>X Class</strong> | Gireesha's Shree Chaitanya English Medium School (2020 - 2021) - <strong>100%</strong></p>
+          </div>
+
+          <div class="resume-section">
+            <h4>INTERNSHIP</h4>
+            <p><strong>Data Analytics Intern</strong> | ApexPlanet Software Pvt. Ltd. (Feb 2026 – Apr 2026)</p>
+            <ul>
+              <li>Applied Data analytics techniques to analyse business datasets and generate actionable insights.</li>
+              <li>Performed exploratory data analysis, built interactive dashboards, and conducted statistical testing using Python, SQL, and Power BI across multiple real-world datasets.</li>
+              <li>Delivered insights on retail sales trends, e-commerce performance, and landing page experiments.</li>
+            </ul>
+          </div>
+
+          <div class="resume-section">
+            <h4>PROJECTS</h4>
+            <p><strong>Deep-Dive Analysis & Interactive Dashboard – Olist E-Commerce Dataset</strong></p>
+            <ul>
+              <li>Analyzed e-commerce transactions to understand customer behavior, product performance, and revenue trends across 1M+ records.</li>
+              <li>Merged multiple datasets to create a master dataset, defined KPIs, and built interactive Power BI dashboards.</li>
+            </ul>
+            <p><strong>A/B Testing & Statistical Validation – Landing Page Experiment</strong></p>
+            <ul>
+              <li>Evaluated conversion rates between control and treatment groups using two-sample Z-Test for proportions.</li>
+              <li>Provided data-driven recommendations on landing page optimization based on statistical p-value significance.</li>
+            </ul>
+          </div>
+
+          <div class="resume-section">
+            <h4>CORE COMPETENCIES & CERTIFICATIONS</h4>
+            <p><strong>Analytics:</strong> Predictive Modeling, Statistical Validation, EDA, Behavioral Pattern Analysis.</p>
+            <p><strong>Technical:</strong> SQL (MySQL/SQLite), Python (Pandas, Seaborn, SciPy, Matplotlib), Power BI, Advanced Excel.</p>
+            <p><strong>Certifications:</strong> Oracle Certified Associate (MySQL HeatWave), Aviatrix Certified Engineer (Multicloud Network).</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="C:\Users\mohan\OneDrive\Documents\MOHAN RESUME__.pdf" download="CHUKKA_MOHAN_RESUME.pdf" class="btn-primary">
+          <i class="fa-solid fa-download"></i> Download Official Resume PDF
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
