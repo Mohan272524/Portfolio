@@ -603,46 +603,16 @@ LIMIT 5;`,
   }
 
   // --------------------------------------------------------------------------
-  // 6. CONTACT FORM SUBMISSION (FORMSUBMIT.CO DIRECT TO GMAIL)
+  // 6. CONTACT FORM SUBMISSION (DIRECT FORMSUBMIT GMAIL DISPATCH)
   // --------------------------------------------------------------------------
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
+    contactForm.addEventListener('submit', (e) => {
       const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Send Direct Message';
-
       if (submitBtn) {
         submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending Message...';
-        submitBtn.disabled = true;
       }
-
-      try {
-        const formData = new FormData(contactForm);
-        const ajaxEndpoint = contactForm.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
-        
-        const response = await fetch(ajaxEndpoint, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        if (response.ok) {
-          showToast('Message sent! Check chnohan022@gmail.com inbox.');
-          contactForm.reset();
-        } else {
-          showToast('Thank you! Your message has been sent to chnohan022@gmail.com');
-          contactForm.reset();
-        }
-      } catch (err) {
-        showToast('Thank you! Your message has been sent to chnohan022@gmail.com');
-        contactForm.reset();
-      } finally {
-        if (submitBtn) {
-          submitBtn.innerHTML = originalBtnText;
-          submitBtn.disabled = false;
-        }
-      }
+      showToast('Sending message to chnohan022@gmail.com...');
     });
   }
 
