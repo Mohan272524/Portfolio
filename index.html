@@ -65,10 +65,10 @@
 
         <div class="hero-cta-group">
           <a href="#project-1" class="btn-primary">
-            <i class="fa-solid fa-chart-line"></i> View Project 1 (Power BI EDA)
+            <i class="fa-solid fa-chart-line"></i> Launch Dynamic Dashboard
           </a>
           <a href="#project-2" class="btn-secondary">
-            <i class="fa-solid fa-flask"></i> View Project 2 (A/B Testing)
+            <i class="fa-solid fa-flask"></i> Try A/B Test Calculator
           </a>
           <button class="btn-glass" id="open-resume-btn">
             <i class="fa-solid fa-file-pdf"></i> View & Download Resume
@@ -191,50 +191,126 @@
         </div>
       </div>
 
-      <!-- Live Dashboard Container -->
+      <!-- DYNAMIC POWER BI DASHBOARD ENGINE -->
       <div class="dashboard-wrapper glass-panel">
-        <div class="dashboard-header">
-          <div class="dashboard-title">
-            <i class="fa-solid fa-desktop"></i> Live Interactive Power BI Dashboard Visualizer
+        
+        <!-- Power BI Dynamic Controls Bar (Multi-Slicers) -->
+        <div class="slicers-bar">
+          <div class="slicers-header">
+            <i class="fa-solid fa-sliders"></i> <strong>Power BI Dynamic Slicers & Filters:</strong>
+            <span class="slicer-tip">Adjust slicers to dynamically recalculate KPIs & charts in real-time</span>
           </div>
-          <div class="dashboard-controls">
-            <label for="chart-metric-select"><i class="fa-solid fa-filter"></i> Slicer Metric View:</label>
-            <select id="chart-metric-select" class="custom-select">
-              <option value="revenue">Category Revenue Distribution ($)</option>
-              <option value="orders">Monthly Order Trend (2025 - 2026)</option>
-              <option value="regions">Geographic Sales Concentration (State Level)</option>
-              <option value="payment">Payment Method Split (Donut Chart)</option>
-            </select>
+          
+          <div class="slicers-grid">
+            <!-- Year Slicer -->
+            <div class="slicer-group">
+              <label for="filter-year"><i class="fa-regular fa-calendar"></i> Year:</label>
+              <select id="filter-year" class="custom-select">
+                <option value="all">All Years (2025 - 2026)</option>
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+              </select>
+            </div>
+
+            <!-- Product Category Slicer -->
+            <div class="slicer-group">
+              <label for="filter-category"><i class="fa-solid fa-tags"></i> Category:</label>
+              <select id="filter-category" class="custom-select">
+                <option value="all">All Product Categories</option>
+                <option value="Health & Beauty">Health & Beauty</option>
+                <option value="Watches & Gifts">Watches & Gifts</option>
+                <option value="Bed & Bath">Bed & Bath</option>
+                <option value="Sports & Leisure">Sports & Leisure</option>
+                <option value="Computers & Acc.">Computers & Acc.</option>
+              </select>
+            </div>
+
+            <!-- Customer State Slicer -->
+            <div class="slicer-group">
+              <label for="filter-state"><i class="fa-solid fa-location-dot"></i> Customer State:</label>
+              <select id="filter-state" class="custom-select">
+                <option value="all">All States (Brazil)</option>
+                <option value="São Paulo (SP)">São Paulo (SP)</option>
+                <option value="Rio de Janeiro (RJ)">Rio de Janeiro (RJ)</option>
+                <option value="Minas Gerais (MG)">Minas Gerais (MG)</option>
+                <option value="Rio Grande (RS)">Rio Grande (RS)</option>
+              </select>
+            </div>
+
+            <!-- Visual Dimension Dropdown -->
+            <div class="slicer-group">
+              <label for="chart-metric-select"><i class="fa-solid fa-chart-pie"></i> Visual Dimension:</label>
+              <select id="chart-metric-select" class="custom-select">
+                <option value="revenue">Category Revenue Breakdown ($)</option>
+                <option value="orders">Monthly Transaction Trend</option>
+                <option value="regions">Geographic Concentration (State)</option>
+                <option value="payment">Payment Type Share</option>
+              </select>
+            </div>
           </div>
         </div>
 
-        <!-- Dashboard KPI Summary Cards -->
+        <!-- Dynamic Dashboard KPI Summary Cards -->
         <div class="kpi-row">
           <div class="kpi-card">
-            <span class="kpi-title">Total Revenue</span>
+            <span class="kpi-title">Filtered Total Revenue</span>
             <span class="kpi-value" id="kpi-rev">$1,482,900</span>
-            <span class="kpi-trend positive"><i class="fa-solid fa-arrow-up"></i> +14.2% YoY</span>
+            <span class="kpi-sub" id="kpi-rev-sub">Total Transaction Value</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Filtered Unique Orders</span>
+            <span class="kpi-value" id="kpi-orders">10,780</span>
+            <span class="kpi-sub" id="kpi-orders-sub">Completed Checkout Orders</span>
           </div>
           <div class="kpi-card">
             <span class="kpi-title">Average Order Value (AOV)</span>
-            <span class="kpi-value" id="kpi-aov">$137.40</span>
-            <span class="kpi-trend positive"><i class="fa-solid fa-arrow-up"></i> +5.8% MoM</span>
-          </div>
-          <div class="kpi-card">
-            <span class="kpi-title">Top Revenue Category</span>
-            <span class="kpi-value" id="kpi-cat">Health & Beauty</span>
-            <span class="kpi-sub">24.5% Total Share</span>
+            <span class="kpi-value" id="kpi-aov">$137.56</span>
+            <span class="kpi-sub" id="kpi-aov-sub">Price + Freight / Orders</span>
           </div>
           <div class="kpi-card">
             <span class="kpi-title">Average Review Score</span>
-            <span class="kpi-value" id="kpi-ret">4.2 / 5.0</span>
-            <span class="kpi-trend positive"><i class="fa-solid fa-star"></i> High Satisfaction</span>
+            <span class="kpi-value" id="kpi-review">4.24 / 5.0</span>
+            <span class="kpi-sub" id="kpi-review-sub"><i class="fa-solid fa-star"></i> Customer Satisfaction</span>
           </div>
         </div>
 
         <!-- Live Chart Canvas -->
         <div class="chart-container">
           <canvas id="olist-chart"></canvas>
+        </div>
+
+        <!-- Raw Data Sample Inspector Trigger -->
+        <div class="inspector-bar">
+          <div>
+            <strong><i class="fa-solid fa-table-cells"></i> Interactive Master Dataset Inspector</strong>
+            <p>View filtered sample rows from the <code>MasterDataset</code> matching your slicer selections.</p>
+          </div>
+          <button class="btn-preset" id="toggle-data-inspector-btn">
+            <i class="fa-solid fa-eye"></i> Inspect Filtered Dataset Rows
+          </button>
+        </div>
+
+        <!-- Collapsible Data Inspector Table -->
+        <div class="inspector-table-wrapper hidden" id="inspector-table-wrapper">
+          <div class="table-responsive">
+            <table class="sql-table" id="master-data-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Order Date</th>
+                  <th>Product Category</th>
+                  <th>Customer State</th>
+                  <th>Price ($)</th>
+                  <th>Freight ($)</th>
+                  <th>Payment Type</th>
+                  <th>Review Score</th>
+                </tr>
+              </thead>
+              <tbody id="master-data-tbody">
+                <!-- Dynamically Rendered Filtered Rows -->
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- Project Workflow & Execution Steps -->

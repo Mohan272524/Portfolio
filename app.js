@@ -1,8 +1,7 @@
 /* ==========================================================================
-   CHUKKA MOHAN - DATA ANALYST PORTFOLIO INTERACTIVE APP LOGIC
-   Features: Particle Mesh Canvas, Live Chart.js Visualizer,
-             Real-Time Statistical Z-Test Calculator, SQL Query Playground,
-             Resume Modal & Toast Notifications.
+   CHUKKA MOHAN - DATA ANALYST PORTFOLIO DYNAMIC ANALYTICS ENGINE
+   Features: Real-Time Multi-Slicer Data Engine, Dynamic Chart.js Visualizer,
+             Filtered Master Data Inspector, A/B Z-Test Calculator, SQL Sandbox.
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -52,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function animate() {
       ctx.clearRect(0, 0, width, height);
 
-      // Draw connection lines between close particles
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -79,75 +77,167 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 2. PROJECT 1: OLIST E-COMMERCE LIVE CHART.JS DASHBOARD
+  // 2. PROJECT 1: REALISTIC TRANSACTIONAL DATA ENGINE & POWER BI SLICERS
   // --------------------------------------------------------------------------
+  const categories = ['Health & Beauty', 'Watches & Gifts', 'Bed & Bath', 'Sports & Leisure', 'Computers & Acc.'];
+  const states = ['São Paulo (SP)', 'Rio de Janeiro (RJ)', 'Minas Gerais (MG)', 'Rio Grande (RS)'];
+  const payments = ['Credit Card', 'Boleto (Bank Slip)', 'Voucher', 'Debit Card'];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  // Seeded Realistic Master Dataset Array (120 Records)
+  const masterDataset = [];
+  let orderIdCounter = 10001;
+
+  for (let i = 0; i < 120; i++) {
+    const year = i % 2 === 0 ? '2026' : '2025';
+    const monthIndex = i % 12;
+    const month = months[monthIndex];
+    const category = categories[i % categories.length];
+    const state = states[i % states.length];
+    const payment = payments[(i * 3) % payments.length];
+    
+    // Realistic Pricing Math based on category
+    let basePrice = 35 + (i % 7) * 25;
+    if (category === 'Health & Beauty') basePrice += 40;
+    if (category === 'Computers & Acc.') basePrice += 110;
+    
+    const freight = 12 + (i % 5) * 4;
+    const review = (3 + (i % 3) * 0.9).toFixed(1);
+    const dateStr = `${year}-${(monthIndex + 1).toString().padStart(2, '0')}-15`;
+
+    masterDataset.push({
+      orderId: `ORD-${orderIdCounter++}`,
+      year: year,
+      month: month,
+      date: dateStr,
+      category: category,
+      state: state,
+      payment: payment,
+      price: basePrice,
+      freight: freight,
+      revenue: basePrice + freight,
+      review: parseFloat(review)
+    });
+  }
+
+  // DOM Elements for Slicers & Dynamic Dashboard
+  const filterYear = document.getElementById('filter-year');
+  const filterCategory = document.getElementById('filter-category');
+  const filterState = document.getElementById('filter-state');
+  const chartMetricSelect = document.getElementById('chart-metric-select');
+
+  const kpiRev = document.getElementById('kpi-rev');
+  const kpiOrders = document.getElementById('kpi-orders');
+  const kpiAov = document.getElementById('kpi-aov');
+  const kpiReview = document.getElementById('kpi-review');
+
   const olistChartCanvas = document.getElementById('olist-chart');
   let olistChart = null;
 
-  const olistDataSets = {
-    revenue: {
-      type: 'bar',
-      labels: ['Health & Beauty', 'Watches & Gifts', 'Bed & Bath', 'Sports & Leisure', 'Computers & Acc.'],
-      datasets: [{
-        label: 'Category Revenue ($)',
-        data: [362000, 298000, 245000, 210000, 185000],
-        backgroundColor: [
-          'rgba(0, 242, 254, 0.85)',
-          'rgba(99, 102, 241, 0.85)',
-          'rgba(139, 92, 246, 0.85)',
-          'rgba(16, 185, 129, 0.85)',
-          'rgba(245, 158, 11, 0.85)'
-        ],
-        borderRadius: 8
-      }]
-    },
-    orders: {
-      type: 'line',
-      labels: ['Oct 25', 'Nov 25', 'Dec 25', 'Jan 26', 'Feb 26', 'Mar 26'],
-      datasets: [{
-        label: 'Monthly Order Volume',
-        data: [14200, 18900, 24500, 16800, 19200, 21400],
-        borderColor: '#00f2fe',
-        backgroundColor: 'rgba(0, 242, 254, 0.15)',
-        fill: true,
-        tension: 0.4,
-        pointBackgroundColor: '#00f2fe',
-        pointRadius: 6
-      }]
-    },
-    regions: {
-      type: 'bar',
-      labels: ['São Paulo (SP)', 'Rio de Janeiro (RJ)', 'Minas Gerais (MG)', 'Rio Grande (RS)', 'Paraná (PR)'],
-      datasets: [{
-        label: 'State Orders Share (%)',
-        data: [41.8, 12.8, 11.6, 5.4, 5.0],
-        backgroundColor: 'rgba(99, 102, 241, 0.85)',
-        borderRadius: 8
-      }]
-    },
-    payment: {
-      type: 'doughnut',
-      labels: ['Credit Card', 'Boleto (Bank Slip)', 'Voucher', 'Debit Card'],
-      datasets: [{
-        label: 'Payment Method Share',
-        data: [73.9, 19.0, 5.4, 1.7],
-        backgroundColor: ['#00f2fe', '#6366f1', '#8b5cf6', '#10b981'],
-        borderWidth: 0
-      }]
-    }
-  };
+  // Filter Master Dataset based on current Slicers
+  function getFilteredDataset() {
+    const selYear = filterYear ? filterYear.value : 'all';
+    const selCat = filterCategory ? filterCategory.value : 'all';
+    const selState = filterState ? filterState.value : 'all';
 
-  function initOlistChart(metric = 'revenue') {
+    return masterDataset.filter(row => {
+      const matchYear = selYear === 'all' || row.year === selYear;
+      const matchCat = selCat === 'all' || row.category === selCat;
+      const matchState = selState === 'all' || row.state === selState;
+      return matchYear && matchCat && matchState;
+    });
+  }
+
+  // Update Dynamic Dashboard & Chart
+  function updateDynamicDashboard() {
+    const filteredData = getFilteredDataset();
+
+    // Recalculate KPIs
+    const totalOrdersCount = filteredData.length;
+    const totalRevVal = filteredData.reduce((sum, r) => sum + r.revenue, 0);
+    const avgAovVal = totalOrdersCount > 0 ? totalRevVal / totalOrdersCount : 0;
+    const avgReviewVal = totalOrdersCount > 0 ? (filteredData.reduce((sum, r) => sum + r.review, 0) / totalOrdersCount) : 0;
+
+    // Update KPI Text (Multiplied by realistic scale factor for display)
+    const scaleFactor = 115; // Represents sample scaling to 1M+ transactions
+    const scaledRev = totalRevVal * scaleFactor;
+    const scaledOrders = totalOrdersCount * scaleFactor;
+
+    if (kpiRev) kpiRev.innerText = `$${scaledRev.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
+    if (kpiOrders) kpiOrders.innerText = scaledOrders.toLocaleString('en-US');
+    if (kpiAov) kpiAov.innerText = `$${avgAovVal.toFixed(2)}`;
+    if (kpiReview) kpiReview.innerText = `${avgReviewVal.toFixed(2)} / 5.0`;
+
+    // Render Dynamic Visual Chart based on Selected Metric
+    renderDynamicChart(filteredData);
+
+    // Update Raw Inspector Table Rows
+    renderInspectorTableRows(filteredData);
+  }
+
+  function renderDynamicChart(dataset) {
     if (!olistChartCanvas) return;
     if (olistChart) olistChart.destroy();
 
-    const configData = olistDataSets[metric];
+    const dimension = chartMetricSelect ? chartMetricSelect.value : 'revenue';
+    let chartType = 'bar';
+    let labels = [];
+    let chartData = [];
+    let datasetLabel = '';
+    let bgColors = [];
+
+    if (dimension === 'revenue') {
+      chartType = 'bar';
+      datasetLabel = 'Category Revenue ($)';
+      labels = categories;
+      chartData = categories.map(cat => {
+        return dataset.filter(r => r.category === cat).reduce((sum, r) => sum + r.revenue, 0) * 115;
+      });
+      bgColors = ['rgba(0, 242, 254, 0.85)', 'rgba(99, 102, 241, 0.85)', 'rgba(139, 92, 246, 0.85)', 'rgba(16, 185, 129, 0.85)', 'rgba(245, 158, 11, 0.85)'];
+
+    } else if (dimension === 'orders') {
+      chartType = 'line';
+      datasetLabel = 'Monthly Order Trend';
+      labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      chartData = labels.map(m => {
+        return dataset.filter(r => r.month === m).length * 115;
+      });
+      bgColors = '#00f2fe';
+
+    } else if (dimension === 'regions') {
+      chartType = 'bar';
+      datasetLabel = 'State Orders Concentration';
+      labels = states;
+      chartData = states.map(st => {
+        return dataset.filter(r => r.state === st).length * 115;
+      });
+      bgColors = 'rgba(99, 102, 241, 0.85)';
+
+    } else if (dimension === 'payment') {
+      chartType = 'doughnut';
+      datasetLabel = 'Payment Share';
+      labels = payments;
+      chartData = payments.map(pm => {
+        return dataset.filter(r => r.payment === pm).length;
+      });
+      bgColors = ['#00f2fe', '#6366f1', '#8b5cf6', '#10b981'];
+    }
+
+    const configDatasets = [{
+      label: datasetLabel,
+      data: chartData,
+      backgroundColor: bgColors,
+      borderColor: chartType === 'line' ? '#00f2fe' : undefined,
+      fill: chartType === 'line',
+      tension: 0.4,
+      borderRadius: chartType === 'bar' ? 8 : 0
+    }];
 
     olistChart = new Chart(olistChartCanvas, {
-      type: configData.type,
+      type: chartType,
       data: {
-        labels: configData.labels,
-        datasets: configData.datasets
+        labels: labels,
+        datasets: configDatasets
       },
       options: {
         responsive: true,
@@ -164,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bodyFont: { family: 'JetBrains Mono' }
           }
         },
-        scales: configData.type === 'doughnut' ? {} : {
+        scales: chartType === 'doughnut' ? {} : {
           x: {
             grid: { color: 'rgba(255, 255, 255, 0.05)' },
             ticks: { color: '#9ca3af' }
@@ -178,14 +268,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  initOlistChart('revenue');
+  // Render Rows in Raw Data Inspector Table
+  function renderInspectorTableRows(dataset) {
+    const tbody = document.getElementById('master-data-tbody');
+    if (!tbody) return;
 
-  const chartMetricSelect = document.getElementById('chart-metric-select');
-  if (chartMetricSelect) {
-    chartMetricSelect.addEventListener('change', (e) => {
-      initOlistChart(e.target.value);
+    let html = '';
+    const rowsToDisplay = dataset.slice(0, 8); // Display first 8 matching rows
+
+    if (rowsToDisplay.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; color:#9ca3af;">No matching rows found for current slicer selection.</td></tr>';
+      return;
+    }
+
+    rowsToDisplay.forEach(row => {
+      html += `<tr>
+        <td><code>${row.orderId}</code></td>
+        <td>${row.date}</td>
+        <td><span class="tech-tag">${row.category}</span></td>
+        <td>${row.state}</td>
+        <td>$${row.price.toFixed(2)}</td>
+        <td>$${row.freight.toFixed(2)}</td>
+        <td>${row.payment}</td>
+        <td><span style="color:#10b981; font-weight:bold;">${row.review} ★</span></td>
+      </tr>`;
+    });
+
+    tbody.innerHTML = html;
+  }
+
+  // Toggle Collapsible Inspector Table
+  const toggleInspectorBtn = document.getElementById('toggle-data-inspector-btn');
+  const inspectorWrapper = document.getElementById('inspector-table-wrapper');
+  if (toggleInspectorBtn && inspectorWrapper) {
+    toggleInspectorBtn.addEventListener('click', () => {
+      inspectorWrapper.classList.toggle('hidden');
+      if (!inspectorWrapper.classList.contains('hidden')) {
+        toggleInspectorBtn.innerHTML = '<i class="fa-solid fa-eye-slash"></i> Hide Master Dataset Inspector';
+      } else {
+        toggleInspectorBtn.innerHTML = '<i class="fa-solid fa-eye"></i> Inspect Filtered Dataset Rows';
+      }
     });
   }
+
+  // Add Event Listeners for Slicers
+  [filterYear, filterCategory, filterState, chartMetricSelect].forEach(el => {
+    if (el) el.addEventListener('change', () => {
+      updateDynamicDashboard();
+      showToast('Dynamic Power BI Slicers Recalculated Dashboard!');
+    });
+  });
+
+  // Initial Load
+  updateDynamicDashboard();
 
   // --------------------------------------------------------------------------
   // 3. PROJECT 2: STATISTICAL A/B TESTING Z-TEST CALCULATOR
