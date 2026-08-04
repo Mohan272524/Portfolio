@@ -1,6 +1,6 @@
 /* ==========================================================================
    CHUKKA MOHAN - DATA ANALYST PORTFOLIO INTERACTIVE APP LOGIC
-   Features: Particle Mesh Canvas, Persona Switcher, Live Chart.js Visualizer,
+   Features: Particle Mesh Canvas, Live Chart.js Visualizer,
              Real-Time Statistical Z-Test Calculator, SQL Query Playground,
              Resume Modal & Toast Notifications.
    ========================================================================== */
@@ -79,31 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 2. RECRUITER PERSONA SWITCHER LOGIC
-  // --------------------------------------------------------------------------
-  const personaBtns = document.querySelectorAll('.persona-btn');
-  const personaBannerText = document.getElementById('persona-banner-text');
-
-  const personaMessages = {
-    recruiter: '<strong>Recruiter Overview:</strong> B-Tech CSE (CyberSecurity) with 9.01 CGPA, 1M+ transactions analyzed, certified in Oracle HeatWave & Aviatrix.',
-    techlead: '<strong>Data Lead View:</strong> Expert in SQL joins, Pandas/SciPy EDA, SciPy Z-Test hypothesis validation, Power BI DAX & predictive modeling.',
-    executive: '<strong>Executive View:</strong> Focused on driving revenue, optimizing A/B landing page conversion, and delivering root-cause business insights.'
-  };
-
-  personaBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      personaBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const persona = btn.getAttribute('data-persona');
-      if (personaBannerText && personaMessages[persona]) {
-        personaBannerText.innerHTML = personaMessages[persona];
-        showToast(`Switched view to ${btn.innerText.trim()}`);
-      }
-    });
-  });
-
-  // --------------------------------------------------------------------------
-  // 3. PROJECT 1: OLIST E-COMMERCE LIVE CHART.JS DASHBOARD
+  // 2. PROJECT 1: OLIST E-COMMERCE LIVE CHART.JS DASHBOARD
   // --------------------------------------------------------------------------
   const olistChartCanvas = document.getElementById('olist-chart');
   let olistChart = null;
@@ -212,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 4. PROJECT 2: STATISTICAL A/B TESTING Z-TEST CALCULATOR
+  // 3. PROJECT 2: STATISTICAL A/B TESTING Z-TEST CALCULATOR
   // --------------------------------------------------------------------------
   const inputNa = document.getElementById('input-na');
   const inputXa = document.getElementById('input-xa');
@@ -236,7 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const verdictDesc = document.getElementById('verdict-desc');
 
   function erf(x) {
-    // Abramowitz and Stegun approximation for Error Function
     const a1 =  0.254829592;
     const a2 = -0.284496736;
     const a3 =  1.421413741;
@@ -264,7 +239,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const xB = parseInt(inputXb.value);
     const alpha = parseFloat(inputAlpha.value);
 
-    // Guardrail against X > N
     const safeXa = Math.min(xA, nA);
     const safeXb = Math.min(xB, nB);
 
@@ -272,7 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const pB = safeXb / nB;
     const diff = pB - pA;
 
-    // Pooled proportion
     const pPool = (safeXa + safeXb) / (nA + nB);
     const sePool = Math.sqrt(pPool * (1 - pPool) * (1 / nA + 1 / nB));
 
@@ -281,10 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
       zScore = diff / sePool;
     }
 
-    // Two-tailed P-value
     const pValue = 2 * (1 - normCDF(Math.abs(zScore)));
 
-    // Update UI Labels
     valNa.innerText = nA.toLocaleString();
     valXa.innerText = safeXa.toLocaleString();
     valPa.innerText = (pA * 100).toFixed(2) + '%';
@@ -296,13 +267,11 @@ document.addEventListener('DOMContentLoaded', () => {
     resZ.innerText = zScore.toFixed(3);
     resP.innerText = pValue.toFixed(4);
 
-    // Hypothesis Decision
     if (pValue < alpha) {
       verdictBox.className = 'verdict-card significant';
       verdictTitle.innerHTML = '<i class="fa-solid fa-circle-check"></i> STATISTICALLY SIGNIFICANT UPLIFT';
       verdictDesc.innerText = `The observed conversion difference (${(diff * 100).toFixed(2)}%) has a p-value of ${pValue.toFixed(4)} (< α ${alpha}). We REJECT the null hypothesis (H₀). The new landing page design produces a statistically significant performance boost.`;
       
-      // Trigger subtle celebratory confetti if user dragged to significant
       if (typeof confetti === 'function' && Math.random() < 0.1) {
         confetti({ particleCount: 35, spread: 60, origin: { y: 0.7 } });
       }
@@ -318,7 +287,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   calculateABTest();
 
-  // Load Resume Experiment Data Button
   const loadExpBtn = document.getElementById('load-experiment-data-btn');
   if (loadExpBtn) {
     loadExpBtn.addEventListener('click', () => {
@@ -333,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 5. INTERACTIVE SQL QUERY PLAYGROUND
+  // 4. INTERACTIVE SQL QUERY PLAYGROUND
   // --------------------------------------------------------------------------
   const sqlEditor = document.getElementById('sql-editor-textarea');
   const sqlResultTableContainer = document.getElementById('sql-result-table-container');
@@ -472,7 +440,7 @@ LIMIT 5;`,
   }
 
   // --------------------------------------------------------------------------
-  // 6. RESUME MODAL HANDLERS
+  // 5. RESUME MODAL HANDLERS
   // --------------------------------------------------------------------------
   const resumeModal = document.getElementById('resume-modal');
   const openResumeBtn = document.getElementById('open-resume-btn');
@@ -497,7 +465,7 @@ LIMIT 5;`,
   }
 
   // --------------------------------------------------------------------------
-  // 7. CONTACT FORM & COPY TO CLIPBOARD
+  // 6. CONTACT FORM & COPY TO CLIPBOARD
   // --------------------------------------------------------------------------
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {

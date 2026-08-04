@@ -103,7 +103,7 @@ body {
 .nav-container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1.1rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -116,7 +116,7 @@ body {
   gap: 0.75rem;
   text-decoration: none;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: #fff;
 }
 
@@ -134,61 +134,16 @@ body {
   box-shadow: var(--shadow-glow);
 }
 
-/* Persona Switcher Component */
-.persona-switcher {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.35rem 0.5rem;
-  border-radius: 30px;
-  border: 1px solid var(--border-color);
-}
-
-.persona-label {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  padding: 0 0.5rem;
-  font-weight: 600;
-}
-
-.persona-btn {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 0.35rem 0.85rem;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: var(--transition-fast);
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.persona-btn:hover {
-  color: var(--text-main);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.persona-btn.active {
-  background: linear-gradient(135deg, var(--primary-cyan), var(--primary-blue));
-  color: #0b0f19;
-  font-weight: 700;
-  box-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
-}
-
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.8rem;
 }
 
 .nav-links a {
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 500;
   transition: var(--transition-fast);
 }
@@ -232,10 +187,10 @@ body {
 .btn-primary-sm {
   background: linear-gradient(135deg, var(--primary-cyan), var(--accent-indigo));
   color: #0b0f19;
-  padding: 0.5rem 1.1rem;
+  padding: 0.55rem 1.25rem;
   border-radius: 8px;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   text-decoration: none;
 }
 
@@ -325,37 +280,18 @@ body {
 }
 
 .hero-title {
-  font-size: 3.2rem;
+  font-size: 3.3rem;
   line-height: 1.15;
   font-weight: 800;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.4rem;
   letter-spacing: -0.02em;
 }
 
 .hero-subtitle {
   font-size: 1.15rem;
   color: var(--text-muted);
-  margin-bottom: 1.5rem;
-  max-width: 640px;
-}
-
-.persona-banner {
-  background: rgba(0, 242, 254, 0.08);
-  border: 1px solid rgba(0, 242, 254, 0.25);
-  padding: 0.85rem 1.2rem;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  color: #e0f2fe;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
   margin-bottom: 2rem;
-  transition: var(--transition-normal);
-}
-
-.persona-banner i {
-  color: var(--primary-cyan);
-  font-size: 1.1rem;
+  max-width: 640px;
 }
 
 .hero-cta-group {
@@ -1461,8 +1397,5 @@ body {
   }
   .hero-title {
     font-size: 2.3rem;
-  }
-  .persona-switcher {
-    display: none;
   }
 }
