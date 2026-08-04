@@ -33,8 +33,7 @@
 
       <nav class="nav-links">
         <a href="#about">About</a>
-        <a href="#project-1">Project 1: E-Commerce Analytics</a>
-        <a href="#project-2">Project 2: A/B Statistical Validation</a>
+        <a href="#projects">Projects</a>
         <a href="#sql-sandbox">SQL Engine</a>
         <a href="#skills">Competencies</a>
         <a href="#experience">Experience</a>
@@ -64,11 +63,11 @@
         </p>
 
         <div class="hero-cta-group">
-          <a href="#project-1" class="btn-primary">
-            <i class="fa-solid fa-chart-line"></i> View Project 1 (Power BI EDA)
+          <a href="#projects" class="btn-primary">
+            <i class="fa-solid fa-folder-tree"></i> Explore Analytics Projects
           </a>
-          <a href="#project-2" class="btn-secondary">
-            <i class="fa-solid fa-flask"></i> View Project 2 (A/B Testing)
+          <a href="#sql-sandbox" class="btn-secondary">
+            <i class="fa-solid fa-terminal"></i> Try SQL Engine
           </a>
           <a href="assets/resume.pdf" download="CHUKKA_MOHAN_RESUME.pdf" class="btn-glass" id="open-resume-btn">
             <i class="fa-solid fa-file-pdf"></i> Download Resume PDF
@@ -78,10 +77,10 @@
         <!-- Direct GitHub Links Badges -->
         <div class="repo-badges-row">
           <a href="https://github.com/Mohan272524/Deep-dive-analysis_Interactive_dashboard" target="_blank" rel="noopener" class="repo-badge">
-            <i class="fa-brands fa-github"></i> Project 1 GitHub Repo
+            <i class="fa-brands fa-github"></i> Project 1: Olist EDA & Dashboard
           </a>
-          <a href="https://github.com/Mohan272524/Statistical_validation" target="_blank" rel="noopener" class="repo-badge">
-            <i class="fa-brands fa-github"></i> Project 2 GitHub Repo
+          <a href="https://github.com/Mohan272524/Statistical_validation" target="_badge" rel="noopener" class="repo-badge">
+            <i class="fa-brands fa-github"></i> Project 2: A/B Testing Validation
           </a>
         </div>
 
@@ -140,343 +139,387 @@
     </div>
   </section>
 
-  <!-- Project Case Study 1: Olist E-Commerce Analytics Suite -->
-  <section id="project-1" class="section">
+  <!-- UNIFIED PROJECTS SECTION (Scalable for 3 to 8+ Projects) -->
+  <section id="projects" class="section">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag"><i class="fa-solid fa-folder-open"></i> Project Case Study #1</div>
-        <h2 class="section-title">Deep Dive Analysis & Interactive Dashboard – Olist E-Commerce Dataset</h2>
+        <div class="section-tag"><i class="fa-solid fa-folder-open"></i> Portfolio Projects</div>
+        <h2 class="section-title">Featured Analytics Projects</h2>
         <p class="section-description">
-          Analyzing 100,000+ Brazilian e-commerce orders (2016–2018) to evaluate sales performance, customer behavior, product category demand, and logistics efficiency.
+          A showcase of end-to-end data analytics, interactive Power BI dashboards, statistical hypothesis testing, and upcoming machine learning workflows.
         </p>
       </div>
 
-      <!-- Project Context & GitHub Header Card -->
-      <div class="project-meta-box glass-panel mb-2">
-        <div class="project-header-row">
-          <div>
-            <h3 class="project-card-title"><i class="fa-solid fa-chart-column"></i> Olist E-Commerce Data Analytics Workflow</h3>
-            <p class="project-card-sub">Exploratory Data Analysis, Feature Engineering, Master Dataset Creation & Power BI Dashboarding</p>
-          </div>
-          <a href="https://github.com/Mohan272524/Deep-dive-analysis_Interactive_dashboard" target="_blank" rel="noopener" class="btn-github-action">
-            <i class="fa-brands fa-github"></i> View Full Repository on GitHub
-          </a>
-        </div>
-
-        <hr class="card-divider">
-
-        <div class="meta-grid">
-          <div class="meta-item">
-            <span class="meta-label"><i class="fa-solid fa-database"></i> 1. Ingestion & Merging (2016–2018)</span>
-            <span class="meta-value">Loaded 7 core datasets using <strong>Python & Pandas</strong> (Orders, Order Items, Customers, Payments, Products, Sellers, Reviews). Merged on common keys to form a <code>MasterDataset.zip</code> covering 100k+ orders from 2016–2018.</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label"><i class="fa-solid fa-calculator"></i> 2. Feature Engineering</span>
-            <span class="meta-value">Computed Total Revenue (<code>Price + Freight Value</code>). Converted timestamps to datetime (Year, Month, Day) for time-series trend analysis across 2016, 2017, and 2018.</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label"><i class="fa-solid fa-screwdriver-wrench"></i> 3. Toolkit & Technologies</span>
-            <span class="meta-tags">
-              <span class="tech-tag">Python (Pandas)</span>
-              <span class="tech-tag">Power BI</span>
-              <span class="tech-tag">DAX</span>
-              <span class="tech-tag">Jupyter Notebook</span>
-              <span class="tech-tag">EDA</span>
-            </span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label"><i class="fa-solid fa-lightbulb"></i> 4. Key Business Insights</span>
-            <span class="meta-value">São Paulo contributes highest sales share; Credit Card is 73.9% dominant; Top product categories generate majority revenue; Faster logistics directly improves review scores.</span>
-          </div>
-        </div>
+      <!-- Projects Category Filter Tabs -->
+      <div class="project-tabs-wrapper">
+        <button class="project-tab-btn active" data-filter="all">All Projects</button>
+        <button class="project-tab-btn" data-filter="bi">Power BI & E-Commerce</button>
+        <button class="project-tab-btn" data-filter="stats">A/B Testing & Statistics</button>
+        <button class="project-tab-btn" data-filter="upcoming">Upcoming Projects</button>
       </div>
 
-      <!-- DYNAMIC POWER BI DASHBOARD ENGINE -->
-      <div class="dashboard-wrapper glass-panel">
+      <!-- Projects Grid Cards -->
+      <div class="projects-grid">
         
-        <!-- Power BI Dynamic Controls Bar (Multi-Slicers) -->
-        <div class="slicers-bar">
-          <div class="slicers-header">
-            <i class="fa-solid fa-sliders"></i> <strong>Power BI Dynamic Slicers & Filters:</strong>
-            <span class="slicer-tip">Adjust slicers to dynamically recalculate KPIs & charts (Olist 2016-2018 Data)</span>
-          </div>
+        <!-- Project Card 1: Olist E-Commerce Analytics -->
+        <div class="project-card glass-panel" data-category="bi" id="card-p1">
+          <div class="project-card-badge">Power BI & EDA</div>
+          <h3 class="project-card-heading"><i class="fa-solid fa-chart-column"></i> Olist E-Commerce Deep-Dive Analysis</h3>
+          <p class="project-card-text">
+            Ingested and joined 7 relational datasets (100,000+ orders from 2016–2018). Built interactive Power BI dashboards analyzing revenue, customer behavior, and logistics efficiency.
+          </p>
           
-          <div class="slicers-grid">
-            <!-- Year Slicer (Accurate 2016 - 2018 Olist Timeline) -->
-            <div class="slicer-group">
-              <label for="filter-year"><i class="fa-regular fa-calendar"></i> Olist Year:</label>
-              <select id="filter-year" class="custom-select">
-                <option value="all">All Years (2016 - 2018)</option>
-                <option value="2018">2018</option>
-                <option value="2017">2017</option>
-                <option value="2016">2016</option>
-              </select>
-            </div>
+          <div class="project-tech-tags">
+            <span class="tech-tag">Python (Pandas)</span>
+            <span class="tech-tag">Power BI</span>
+            <span class="tech-tag">DAX</span>
+            <span class="tech-tag">EDA</span>
+          </div>
 
-            <!-- Product Category Slicer -->
-            <div class="slicer-group">
-              <label for="filter-category"><i class="fa-solid fa-tags"></i> Category:</label>
-              <select id="filter-category" class="custom-select">
-                <option value="all">All Product Categories</option>
-                <option value="Health & Beauty">Health & Beauty</option>
-                <option value="Watches & Gifts">Watches & Gifts</option>
-                <option value="Bed & Bath">Bed & Bath</option>
-                <option value="Sports & Leisure">Sports & Leisure</option>
-                <option value="Computers & Acc.">Computers & Acc.</option>
-              </select>
-            </div>
-
-            <!-- Customer State Slicer -->
-            <div class="slicer-group">
-              <label for="filter-state"><i class="fa-solid fa-location-dot"></i> Customer State:</label>
-              <select id="filter-state" class="custom-select">
-                <option value="all">All States (Brazil)</option>
-                <option value="São Paulo (SP)">São Paulo (SP)</option>
-                <option value="Rio de Janeiro (RJ)">Rio de Janeiro (RJ)</option>
-                <option value="Minas Gerais (MG)">Minas Gerais (MG)</option>
-                <option value="Rio Grande (RS)">Rio Grande (RS)</option>
-              </select>
-            </div>
-
-            <!-- Visual Dimension Dropdown -->
-            <div class="slicer-group">
-              <label for="chart-metric-select"><i class="fa-solid fa-chart-pie"></i> Visual Dimension:</label>
-              <select id="chart-metric-select" class="custom-select">
-                <option value="revenue">Category Revenue Breakdown ($)</option>
-                <option value="orders">Monthly Order Trend (2016-2018)</option>
-                <option value="regions">Geographic Concentration (State)</option>
-                <option value="payment">Payment Type Share</option>
-              </select>
-            </div>
+          <div class="project-card-actions">
+            <button class="btn-primary-sm switch-case-btn active" data-target="case-study-p1">
+              <i class="fa-solid fa-play"></i> Open Live Dashboard
+            </button>
+            <a href="https://github.com/Mohan272524/Deep-dive-analysis_Interactive_dashboard" target="_blank" rel="noopener" class="btn-github-action">
+              <i class="fa-brands fa-github"></i> GitHub Repo
+            </a>
           </div>
         </div>
 
-        <!-- Dynamic Dashboard KPI Summary Cards -->
-        <div class="kpi-row">
-          <div class="kpi-card">
-            <span class="kpi-title">Filtered Revenue</span>
-            <span class="kpi-value" id="kpi-rev">$1,482,900</span>
-            <span class="kpi-sub" id="kpi-rev-sub">Total Transaction Value</span>
+        <!-- Project Card 2: A/B Testing Validation -->
+        <div class="project-card glass-panel" data-category="stats" id="card-p2">
+          <div class="project-card-badge">A/B Testing & Stats</div>
+          <h3 class="project-card-heading"><i class="fa-solid fa-flask-vial"></i> Landing Page A/B Test Statistical Validation</h3>
+          <p class="project-card-text">
+            Evaluated conversion rates across 290,585 session logs using Two-Sample Z-Test for proportions ($Z=1.310, p=0.1897$). Delivered data-driven recommendations on site rollout.
+          </p>
+          
+          <div class="project-tech-tags">
+            <span class="tech-tag">Two-Sample Z-Test</span>
+            <span class="tech-tag">Python (SciPy)</span>
+            <span class="tech-tag">Stats</span>
+            <span class="tech-tag">Data Storytelling</span>
           </div>
-          <div class="kpi-card">
-            <span class="kpi-title">Filtered Unique Orders</span>
-            <span class="kpi-value" id="kpi-orders">10,780</span>
-            <span class="kpi-sub" id="kpi-orders-sub">Completed Checkout Orders</span>
-          </div>
-          <div class="kpi-card">
-            <span class="kpi-title">Average Order Value (AOV)</span>
-            <span class="kpi-value" id="kpi-aov">$137.56</span>
-            <span class="kpi-sub" id="kpi-aov-sub">Price + Freight / Orders</span>
-          </div>
-          <div class="kpi-card">
-            <span class="kpi-title">Average Review Score</span>
-            <span class="kpi-value" id="kpi-review">4.24 / 5.0</span>
-            <span class="kpi-sub" id="kpi-review-sub"><i class="fa-solid fa-star"></i> Customer Satisfaction</span>
+
+          <div class="project-card-actions">
+            <button class="btn-primary-sm switch-case-btn" data-target="case-study-p2">
+              <i class="fa-solid fa-play"></i> Open A/B Calculator
+            </button>
+            <a href="https://github.com/Mohan272524/Statistical_validation" target="_blank" rel="noopener" class="btn-github-action">
+              <i class="fa-brands fa-github"></i> GitHub Repo
+            </a>
           </div>
         </div>
 
-        <!-- Live Chart Canvas -->
-        <div class="chart-container">
-          <canvas id="olist-chart"></canvas>
-        </div>
-
-        <!-- Raw Data Sample Inspector Bar & Table -->
-        <div class="inspector-bar">
-          <div>
-            <strong><i class="fa-solid fa-table-cells"></i> Interactive Master Dataset Inspector</strong>
-            <p>View filtered sample rows from the <code>MasterDataset</code> matching your slicer selections.</p>
+        <!-- Placeholder Card 3: Upcoming Machine Learning & Predictive Modeling -->
+        <div class="project-card glass-panel upcoming-card" data-category="upcoming">
+          <div class="project-card-badge upcoming-badge">Building In Progress</div>
+          <h3 class="project-card-heading"><i class="fa-solid fa-brain"></i> Customer Churn & Lifetime Value Prediction</h3>
+          <p class="project-card-text">
+            Predictive machine learning pipeline (Logistic Regression & Random Forest) to identify high-churn customer segments and model Customer Lifetime Value (CLV).
+          </p>
+          
+          <div class="project-tech-tags">
+            <span class="tech-tag">Scikit-Learn</span>
+            <span class="tech-tag">Feature Engineering</span>
+            <span class="tech-tag">Predictive Analytics</span>
           </div>
-          <button class="btn-preset" id="toggle-data-inspector-btn">
-            <i class="fa-solid fa-eye-slash"></i> Hide Master Dataset Inspector
-          </button>
-        </div>
 
-        <!-- Collapsible Data Inspector Table (Visible by Default for Clear Proof) -->
-        <div class="inspector-table-wrapper" id="inspector-table-wrapper">
-          <div class="table-responsive">
-            <table class="sql-table" id="master-data-table">
-              <thead>
-                <tr>
-                  <th>Order ID</th>
-                  <th>Order Date</th>
-                  <th>Product Category</th>
-                  <th>Customer State</th>
-                  <th>Price ($)</th>
-                  <th>Freight ($)</th>
-                  <th>Payment Type</th>
-                  <th>Review Score</th>
-                </tr>
-              </thead>
-              <tbody id="master-data-tbody">
-                <!-- Dynamically Rendered Filtered Rows -->
-              </tbody>
-            </table>
+          <div class="project-card-actions">
+            <span class="badge-coming-soon"><i class="fa-solid fa-clock"></i> Coming Soon</span>
           </div>
         </div>
 
-        <!-- Project Workflow & Execution Steps -->
-        <div class="case-study-details">
-          <h3><i class="fa-solid fa-gears"></i> Step-by-Step Execution Architecture</h3>
-          <div class="methodology-grid">
-            <div class="method-card">
-              <div class="method-num">01</div>
-              <h4>Data Ingestion & Cleaning</h4>
-              <p>Loaded 7 relational datasets in Python Pandas. Inspected data structure, handled missing order timestamps, and verified foreign key integrity.</p>
-            </div>
-            <div class="method-card">
-              <div class="method-num">02</div>
-              <h4>Multi-Table Master Join</h4>
-              <p>Merged Orders + Items + Customers + Payments + Products + Sellers + Reviews into a unified master dataset for multi-dimensional reporting.</p>
-            </div>
-            <div class="method-card">
-              <div class="method-num">03</div>
-              <h4>Power BI Interactive Modeling</h4>
-              <p>Created DAX metrics for Total Revenue, Total Orders, AOV, and Review Score. Implemented interactive slicers for Year, Month, Category, and State.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Project Case Study 2: A/B Testing & Statistical Validation -->
-  <section id="project-2" class="section bg-darker">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag"><i class="fa-solid fa-folder-open"></i> Project Case Study #2</div>
-        <h2 class="section-title">Data Storytelling & Statistical Validation – Landing Page A/B Testing</h2>
-        <p class="section-description">
-          Synthesizing analytical insights into a clear business narrative and validating landing page conversion performance using statistical hypothesis testing.
-        </p>
       </div>
 
-      <!-- Project Context Box for A/B Testing -->
-      <div class="project-meta-box glass-panel mb-2">
-        <div class="project-header-row">
-          <div>
-            <h3 class="project-card-title"><i class="fa-solid fa-flask-vial"></i> A/B Testing Hypothesis Validation Workflow</h3>
-            <p class="project-card-sub">Data Storytelling, Conversion Rate Profiling, Two-Sample Z-Test & Decision Framing</p>
-          </div>
-          <a href="https://github.com/Mohan272524/Statistical_validation" target="_blank" rel="noopener" class="btn-github-action">
-            <i class="fa-brands fa-github"></i> View Full Repository on GitHub
-          </a>
-        </div>
+      <!-- DYNAMIC FEATURED CASE STUDY CONTAINER (Switches smoothly between active project visualizers) -->
+      <div class="featured-case-study-container mt-3">
 
-        <hr class="card-divider">
-
-        <div class="meta-grid">
-          <div class="meta-item">
-            <span class="meta-label"><i class="fa-solid fa-table"></i> 1. Dataset Analyzed</span>
-            <span class="meta-value"><code>ab_data.csv</code> containing 290,585 session logs (user_id, timestamp, group, landing_page, converted). Cleaned duplicates and verified group balance.</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label"><i class="fa-solid fa-scale-balanced"></i> 2. Hypotheses Formulated</span>
-            <span class="meta-value"><strong>H₀ (Null):</strong> $p_{\text{new}} \le p_{\text{old}}$ (New page does not increase conversion)<br><strong>H₁ (Alternative):</strong> $p_{\text{new}} > p_{\text{old}}$ (New page increases conversion)</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label"><i class="fa-solid fa-screwdriver-wrench"></i> 3. Toolkit & Statistical Test</span>
-            <span class="meta-tags">
-              <span class="tech-tag">Two-Sample Z-Test</span>
-              <span class="tech-tag">Python (SciPy.stats)</span>
-              <span class="tech-tag">Pandas / NumPy</span>
-              <span class="tech-tag">Seaborn / Matplotlib</span>
-            </span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label"><i class="fa-solid fa-shield-halved"></i> 4. Test Results & Decision</span>
-            <span class="meta-value">Control: 12.02% vs Treatment: 11.88%. Calculated Z-Statistic $\approx 1.310$, P-Value $\approx 0.1897$ ($> 0.05$). Failed to reject Null Hypothesis ($H_0$). Recommended continuing with current page to avoid unnecessary deployment costs.</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="ab-simulator-wrapper glass-panel">
-        <div class="simulator-top-bar">
-          <div>
-            <h3><i class="fa-solid fa-sliders"></i> Interactive A/B Sandbox & Real Experiment Reproduction</h3>
-            <p>Adjust parameters to test sample sizes ($N$) and conversions ($X$), or click to load exact <code>ab_data.csv</code> results.</p>
-          </div>
-          <button class="btn-preset" id="load-experiment-data-btn">
-            <i class="fa-solid fa-rotate"></i> Load Exact ab_data.csv Experiment Results
-          </button>
-        </div>
-
-        <div class="simulator-grid">
-          <!-- Inputs Column -->
-          <div class="simulator-inputs">
-            <h4><i class="fa-solid fa-users"></i> Experiment Parameters</h4>
-            
-            <!-- Control Group Inputs -->
-            <div class="input-group">
-              <label>Control Group (Old Page) Visitors ($N_A$): <strong id="val-na">145,274</strong></label>
-              <input type="range" id="input-na" min="5000" max="200000" step="5000" value="145274">
-            </div>
-
-            <div class="input-group">
-              <label>Control Conversions ($X_A$): <strong id="val-xa">17,472</strong> (<span id="val-pa">12.02%</span>)</label>
-              <input type="range" id="input-xa" min="500" max="30000" step="500" value="17472">
-            </div>
-
-            <!-- Treatment Group Inputs -->
-            <div class="input-group">
-              <label>Treatment Group (New Page) Visitors ($N_B$): <strong id="val-nb">145,311</strong></label>
-              <input type="range" id="input-nb" min="5000" max="200000" step="5000" value="145311">
-            </div>
-
-            <div class="input-group">
-              <label>Treatment Conversions ($X_B$): <strong id="val-xb">17,264</strong> (<span id="val-pb">11.88%</span>)</label>
-              <input type="range" id="input-xb" min="500" max="30000" step="500" value="17264">
-            </div>
-
-            <!-- Significance Level -->
-            <div class="input-group">
-              <label>Significance Threshold ($\alpha$):</label>
-              <select id="input-alpha" class="custom-select">
-                <option value="0.05" selected>&alpha; = 0.05 (95% Confidence Level)</option>
-                <option value="0.01">&alpha; = 0.01 (99% Confidence Level)</option>
-                <option value="0.10">&alpha; = 0.10 (90% Confidence Level)</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Live Output Column -->
-          <div class="simulator-results">
-            <h4><i class="fa-solid fa-square-poll-vertical"></i> Statistical Output & Decision</h4>
-
-            <div class="results-cards">
-              <div class="res-card">
-                <span class="res-label">Conversion Difference (&Delta;p)</span>
-                <span class="res-val" id="res-diff">-0.14%</span>
+        <!-- Case Study 1: Olist Power BI Engine -->
+        <div class="case-study-block" id="case-study-p1">
+          <!-- Project Context Header -->
+          <div class="project-meta-box glass-panel mb-2">
+            <div class="project-header-row">
+              <div>
+                <h3 class="project-card-title"><i class="fa-solid fa-chart-column"></i> Case Study #1: Olist E-Commerce Data Analytics Workflow</h3>
+                <p class="project-card-sub">Exploratory Data Analysis, Feature Engineering, Master Dataset Creation & Power BI Dashboarding</p>
               </div>
-              <div class="res-card">
-                <span class="res-label">Calculated Z-Score</span>
-                <span class="res-val" id="res-z">1.310</span>
+              <a href="https://github.com/Mohan272524/Deep-dive-analysis_Interactive_dashboard" target="_blank" rel="noopener" class="btn-github-action">
+                <i class="fa-brands fa-github"></i> View Full Repository on GitHub
+              </a>
+            </div>
+
+            <hr class="card-divider">
+
+            <div class="meta-grid">
+              <div class="meta-item">
+                <span class="meta-label"><i class="fa-solid fa-database"></i> 1. Ingestion & Merging (2016–2018)</span>
+                <span class="meta-value">Loaded 7 core datasets using <strong>Python & Pandas</strong> (Orders, Order Items, Customers, Payments, Products, Sellers, Reviews). Merged on common keys to form a <code>MasterDataset.zip</code> covering 100k+ orders from 2016–2018.</span>
               </div>
-              <div class="res-card">
-                <span class="res-label">P-Value (Two-Tailed)</span>
-                <span class="res-val" id="res-p">0.1897</span>
+              <div class="meta-item">
+                <span class="meta-label"><i class="fa-solid fa-calculator"></i> 2. Feature Engineering</span>
+                <span class="meta-value">Computed Total Revenue (<code>Price + Freight Value</code>). Converted timestamps to datetime (Year, Month, Day) for time-series trend analysis across 2016, 2017, and 2018.</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label"><i class="fa-solid fa-screwdriver-wrench"></i> 3. Toolkit & Technologies</span>
+                <span class="meta-tags">
+                  <span class="tech-tag">Python (Pandas)</span>
+                  <span class="tech-tag">Power BI</span>
+                  <span class="tech-tag">DAX</span>
+                  <span class="tech-tag">Jupyter Notebook</span>
+                  <span class="tech-tag">EDA</span>
+                </span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label"><i class="fa-solid fa-lightbulb"></i> 4. Key Business Insights</span>
+                <span class="meta-value">São Paulo contributes highest sales share; Credit Card is 73.9% dominant; Top product categories generate majority revenue; Faster logistics directly improves review scores.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DYNAMIC POWER BI DASHBOARD ENGINE -->
+          <div class="dashboard-wrapper glass-panel">
+            <div class="slicers-bar">
+              <div class="slicers-header">
+                <i class="fa-solid fa-sliders"></i> <strong>Power BI Dynamic Slicers & Filters:</strong>
+                <span class="slicer-tip">Adjust slicers to dynamically recalculate KPIs & charts (Olist 2016-2018 Data)</span>
+              </div>
+              
+              <div class="slicers-grid">
+                <div class="slicer-group">
+                  <label for="filter-year"><i class="fa-regular fa-calendar"></i> Olist Year:</label>
+                  <select id="filter-year" class="custom-select">
+                    <option value="all">All Years (2016 - 2018)</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                  </select>
+                </div>
+
+                <div class="slicer-group">
+                  <label for="filter-category"><i class="fa-solid fa-tags"></i> Category:</label>
+                  <select id="filter-category" class="custom-select">
+                    <option value="all">All Product Categories</option>
+                    <option value="Health & Beauty">Health & Beauty</option>
+                    <option value="Watches & Gifts">Watches & Gifts</option>
+                    <option value="Bed & Bath">Bed & Bath</option>
+                    <option value="Sports & Leisure">Sports & Leisure</option>
+                    <option value="Computers & Acc.">Computers & Acc.</option>
+                  </select>
+                </div>
+
+                <div class="slicer-group">
+                  <label for="filter-state"><i class="fa-solid fa-location-dot"></i> Customer State:</label>
+                  <select id="filter-state" class="custom-select">
+                    <option value="all">All States (Brazil)</option>
+                    <option value="São Paulo (SP)">São Paulo (SP)</option>
+                    <option value="Rio de Janeiro (RJ)">Rio de Janeiro (RJ)</option>
+                    <option value="Minas Gerais (MG)">Minas Gerais (MG)</option>
+                    <option value="Rio Grande (RS)">Rio Grande (RS)</option>
+                  </select>
+                </div>
+
+                <div class="slicer-group">
+                  <label for="chart-metric-select"><i class="fa-solid fa-chart-pie"></i> Visual Dimension:</label>
+                  <select id="chart-metric-select" class="custom-select">
+                    <option value="revenue">Category Revenue Breakdown ($)</option>
+                    <option value="orders">Monthly Order Trend (2016-2018)</option>
+                    <option value="regions">Geographic Concentration (State)</option>
+                    <option value="payment">Payment Type Share</option>
+                  </select>
+                </div>
               </div>
             </div>
 
-            <!-- Verdict Badge -->
-            <div class="verdict-card neutral" id="verdict-box">
-              <div class="verdict-title" id="verdict-title">NOT STATISTICALLY SIGNIFICANT</div>
-              <p class="verdict-desc" id="verdict-desc">
-                The observed conversion difference (-0.14%) has a p-value of 0.1897 (> &alpha; 0.05). We fail to reject the null hypothesis ($H_0$). The new landing page does NOT produce a statistically significant uplift.
-              </p>
+            <!-- Dynamic Dashboard KPI Summary Cards -->
+            <div class="kpi-row">
+              <div class="kpi-card">
+                <span class="kpi-title">Filtered Revenue</span>
+                <span class="kpi-value" id="kpi-rev">$1,482,900</span>
+                <span class="kpi-sub">Total Transaction Value</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-title">Filtered Unique Orders</span>
+                <span class="kpi-value" id="kpi-orders">10,780</span>
+                <span class="kpi-sub">Completed Checkout Orders</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-title">Average Order Value (AOV)</span>
+                <span class="kpi-value" id="kpi-aov">$137.56</span>
+                <span class="kpi-sub">Price + Freight / Orders</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-title">Average Review Score</span>
+                <span class="kpi-value" id="kpi-review">4.24 / 5.0</span>
+                <span class="kpi-sub"><i class="fa-solid fa-star"></i> Customer Satisfaction</span>
+              </div>
             </div>
 
-            <div class="formula-box">
-              <div class="formula-title"><i class="fa-solid fa-square-root-variable"></i> Statistical Formula Applied</div>
-              <code>Z = (p&#770;<sub>B</sub> - p&#770;<sub>A</sub>) / &radic;[ p&#770;(1-p&#770;)(1/N<sub>A</sub> + 1/N<sub>B</sub>) ]</code>
+            <!-- Live Chart Canvas -->
+            <div class="chart-container">
+              <canvas id="olist-chart"></canvas>
+            </div>
+
+            <!-- Raw Data Inspector Bar & Table -->
+            <div class="inspector-bar">
+              <div>
+                <strong><i class="fa-solid fa-table-cells"></i> Interactive Master Dataset Inspector</strong>
+                <p>View filtered sample rows from the <code>MasterDataset</code> matching your slicer selections.</p>
+              </div>
+              <button class="btn-preset" id="toggle-data-inspector-btn">
+                <i class="fa-solid fa-eye-slash"></i> Hide Master Dataset Inspector
+              </button>
+            </div>
+
+            <div class="inspector-table-wrapper" id="inspector-table-wrapper">
+              <div class="table-responsive">
+                <table class="sql-table" id="master-data-table">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Order Date</th>
+                      <th>Product Category</th>
+                      <th>Customer State</th>
+                      <th>Price ($)</th>
+                      <th>Freight ($)</th>
+                      <th>Payment Type</th>
+                      <th>Review Score</th>
+                    </tr>
+                  </thead>
+                  <tbody id="master-data-tbody">
+                    <!-- Rendered Filtered Rows -->
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Case Study 2: A/B Testing Calculator Engine -->
+        <div class="case-study-block hidden" id="case-study-p2">
+          <div class="project-meta-box glass-panel mb-2">
+            <div class="project-header-row">
+              <div>
+                <h3 class="project-card-title"><i class="fa-solid fa-flask-vial"></i> Case Study #2: A/B Testing Hypothesis Validation Workflow</h3>
+                <p class="project-card-sub">Data Storytelling, Conversion Rate Profiling, Two-Sample Z-Test & Decision Framing</p>
+              </div>
+              <a href="https://github.com/Mohan272524/Statistical_validation" target="_blank" rel="noopener" class="btn-github-action">
+                <i class="fa-brands fa-github"></i> View Full Repository on GitHub
+              </a>
+            </div>
+
+            <hr class="card-divider">
+
+            <div class="meta-grid">
+              <div class="meta-item">
+                <span class="meta-label"><i class="fa-solid fa-table"></i> 1. Dataset Analyzed</span>
+                <span class="meta-value"><code>ab_data.csv</code> containing 290,585 session logs (user_id, timestamp, group, landing_page, converted). Cleaned duplicates and verified group balance.</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label"><i class="fa-solid fa-scale-balanced"></i> 2. Hypotheses Formulated</span>
+                <span class="meta-value"><strong>H₀ (Null):</strong> $p_{\text{new}} \le p_{\text{old}}$ (New page does not increase conversion)<br><strong>H₁ (Alternative):</strong> $p_{\text{new}} > p_{\text{old}}$ (New page increases conversion)</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label"><i class="fa-solid fa-screwdriver-wrench"></i> 3. Toolkit & Statistical Test</span>
+                <span class="meta-tags">
+                  <span class="tech-tag">Two-Sample Z-Test</span>
+                  <span class="tech-tag">Python (SciPy.stats)</span>
+                  <span class="tech-tag">Pandas / NumPy</span>
+                  <span class="tech-tag">Seaborn / Matplotlib</span>
+                </span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label"><i class="fa-solid fa-shield-halved"></i> 4. Test Results & Decision</span>
+                <span class="meta-value">Control: 12.02% vs Treatment: 11.88%. Calculated Z-Statistic $\approx 1.310$, P-Value $\approx 0.1897$ ($> 0.05$). Failed to reject Null Hypothesis ($H_0$). Recommended continuing with current page to avoid unnecessary deployment costs.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ab-simulator-wrapper glass-panel">
+            <div class="simulator-top-bar">
+              <div>
+                <h3><i class="fa-solid fa-sliders"></i> Interactive A/B Sandbox & Real Experiment Reproduction</h3>
+                <p>Adjust parameters to test sample sizes ($N$) and conversions ($X$), or click to load exact <code>ab_data.csv</code> results.</p>
+              </div>
+              <button class="btn-preset" id="load-experiment-data-btn">
+                <i class="fa-solid fa-rotate"></i> Load Exact ab_data.csv Experiment Results
+              </button>
+            </div>
+
+            <div class="simulator-grid">
+              <div class="simulator-inputs">
+                <h4><i class="fa-solid fa-users"></i> Experiment Parameters</h4>
+                
+                <div class="input-group">
+                  <label>Control Group (Old Page) Visitors ($N_A$): <strong id="val-na">145,274</strong></label>
+                  <input type="range" id="input-na" min="5000" max="200000" step="5000" value="145274">
+                </div>
+
+                <div class="input-group">
+                  <label>Control Conversions ($X_A$): <strong id="val-xa">17,472</strong> (<span id="val-pa">12.02%</span>)</label>
+                  <input type="range" id="input-xa" min="500" max="30000" step="500" value="17472">
+                </div>
+
+                <div class="input-group">
+                  <label>Treatment Group (New Page) Visitors ($N_B$): <strong id="val-nb">145,311</strong></label>
+                  <input type="range" id="input-nb" min="5000" max="200000" step="5000" value="145311">
+                </div>
+
+                <div class="input-group">
+                  <label>Treatment Conversions ($X_B$): <strong id="val-xb">17,264</strong> (<span id="val-pb">11.88%</span>)</label>
+                  <input type="range" id="input-xb" min="500" max="30000" step="500" value="17264">
+                </div>
+
+                <div class="input-group">
+                  <label>Significance Threshold ($\alpha$):</label>
+                  <select id="input-alpha" class="custom-select">
+                    <option value="0.05" selected>&alpha; = 0.05 (95% Confidence Level)</option>
+                    <option value="0.01">&alpha; = 0.01 (99% Confidence Level)</option>
+                    <option value="0.10">&alpha; = 0.10 (90% Confidence Level)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="simulator-results">
+                <h4><i class="fa-solid fa-square-poll-vertical"></i> Statistical Output & Decision</h4>
+
+                <div class="results-cards">
+                  <div class="res-card">
+                    <span class="res-label">Conversion Difference (&Delta;p)</span>
+                    <span class="res-val" id="res-diff">-0.14%</span>
+                  </div>
+                  <div class="res-card">
+                    <span class="res-label">Calculated Z-Score</span>
+                    <span class="res-val" id="res-z">1.310</span>
+                  </div>
+                  <div class="res-card">
+                    <span class="res-label">P-Value (Two-Tailed)</span>
+                    <span class="res-val" id="res-p">0.1897</span>
+                  </div>
+                </div>
+
+                <div class="verdict-card neutral" id="verdict-box">
+                  <div class="verdict-title" id="verdict-title">NOT STATISTICALLY SIGNIFICANT</div>
+                  <p class="verdict-desc" id="verdict-desc">
+                    The observed conversion difference (-0.14%) has a p-value of 0.1897 (> &alpha; 0.05). We fail to reject the null hypothesis ($H_0$). The new landing page does NOT produce a statistically significant uplift.
+                  </p>
+                </div>
+
+                <div class="formula-box">
+                  <div class="formula-title"><i class="fa-solid fa-square-root-variable"></i> Statistical Formula Applied</div>
+                  <code>Z = (p&#770;<sub>B</sub> - p&#770;<sub>A</sub>) / &radic;[ p&#770;(1-p&#770;)(1/N<sub>A</sub> + 1/N<sub>B</sub>) ]</code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- Interactive SQL Sandbox -->
-  <section id="sql-sandbox" class="section">
+  <section id="sql-sandbox" class="section bg-darker">
     <div class="container">
       <div class="section-header">
         <div class="section-tag"><i class="fa-solid fa-terminal"></i> SQL Query Engine</div>
@@ -518,7 +561,7 @@
   </section>
 
   <!-- Core Competencies Matrix -->
-  <section id="skills" class="section bg-darker">
+  <section id="skills" class="section">
     <div class="container">
       <div class="section-header">
         <div class="section-tag"><i class="fa-solid fa-cubes"></i> Domain Expertise</div>
@@ -529,7 +572,6 @@
       </div>
 
       <div class="skills-grid">
-        <!-- Card 1: Data & Analytics -->
         <div class="skill-category-card glass-panel">
           <div class="skill-icon"><i class="fa-solid fa-brain"></i></div>
           <h3>Data & Analytics Methods</h3>
@@ -553,7 +595,6 @@
           </ul>
         </div>
 
-        <!-- Card 2: Technical Toolkit -->
         <div class="skill-category-card glass-panel">
           <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
           <h3>Technical Toolkit</h3>
@@ -577,7 +618,6 @@
           </ul>
         </div>
 
-        <!-- Card 3: Business & Strategy -->
         <div class="skill-category-card glass-panel">
           <div class="skill-icon"><i class="fa-solid fa-bullseye"></i></div>
           <h3>Business & Strategy</h3>
@@ -605,11 +645,10 @@
   </section>
 
   <!-- Experience & Education Timeline -->
-  <section id="experience" class="section">
+  <section id="experience" class="section bg-darker">
     <div class="container">
       <div class="timeline-grid">
 
-        <!-- Experience Column -->
         <div class="timeline-col">
           <div class="section-tag"><i class="fa-solid fa-briefcase"></i> Work History</div>
           <h2 class="col-title">Internship Experience</h2>
@@ -629,12 +668,10 @@
           </div>
         </div>
 
-        <!-- Education & Certifications Column -->
         <div class="timeline-col">
           <div class="section-tag"><i class="fa-solid fa-graduation-cap"></i> Academic & Credentials</div>
           <h2 class="col-title">Education & Certifications</h2>
 
-          <!-- Education Items -->
           <div class="timeline-item glass-panel">
             <div class="timeline-dot"></div>
             <div class="timeline-header">
@@ -655,7 +692,6 @@
             <div class="grade-badge">Percentage: <strong>97.8%</strong></div>
           </div>
 
-          <!-- Verified Certifications Grid -->
           <div class="cert-grid">
             <div class="cert-card glass-panel">
               <i class="fa-solid fa-database cert-icon"></i>
@@ -680,7 +716,7 @@
   </section>
 
   <!-- Contact & Footer -->
-  <section id="contact" class="section bg-darker">
+  <section id="contact" class="section">
     <div class="container">
       <div class="contact-card glass-panel">
         <div class="contact-header">
@@ -730,7 +766,6 @@
             </div>
           </div>
 
-          <!-- Direct Formspree / Mailto Connected Contact Form -->
           <form class="contact-form" id="contact-form" action="https://formspree.io/f/mnqevpzb" method="POST">
             <div class="form-group">
               <label for="contact-name">Your Name</label>
@@ -754,13 +789,12 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer bg-darker">
     <div class="container footer-container">
       <p>&copy; 2026 Chukka Mohan. Built for Data Analytics Excellence.</p>
       <div class="footer-links">
         <a href="#about">Top</a>
-        <a href="#project-1">Project 1</a>
-        <a href="#project-2">Project 2</a>
+        <a href="#projects">Projects</a>
         <a href="#sql-sandbox">SQL Engine</a>
       </div>
     </div>

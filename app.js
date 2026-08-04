@@ -1,6 +1,7 @@
 /* ==========================================================================
    CHUKKA MOHAN - DATA ANALYST PORTFOLIO DYNAMIC ANALYTICS ENGINE
-   Single Source of Truth: Reconciled A/B Test (ab_data.csv) & Olist (2016-2018)
+   Features: Unified Multi-Project Hub, Interactive Case Study Viewer,
+             Real-Time Power BI Engine, Reconciled A/B Z-Test Calculator.
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -76,7 +77,51 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 2. PROJECT 1: OLIST E-COMMERCE DATA ENGINE (ACCURATE 2016-2018 DATASET)
+  // 2. UNIFIED PROJECTS HUB: CATEGORY FILTERING & CASE STUDY SWITCHER
+  // --------------------------------------------------------------------------
+  const projectTabBtns = document.querySelectorAll('.project-tab-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+  const switchCaseBtns = document.querySelectorAll('.switch-case-btn');
+  const caseStudyBlocks = document.querySelectorAll('.case-study-block');
+
+  // Category Filtering
+  projectTabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      projectTabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+      projectCards.forEach(card => {
+        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Switch Case Study Viewer
+  switchCaseBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      
+      switchCaseBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      caseStudyBlocks.forEach(block => {
+        if (block.id === targetId) {
+          block.classList.remove('hidden');
+          block.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          block.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // --------------------------------------------------------------------------
+  // 3. PROJECT 1: OLIST E-COMMERCE DATA ENGINE (2016-2018 DATASET)
   // --------------------------------------------------------------------------
   const categories = ['Health & Beauty', 'Watches & Gifts', 'Bed & Bath', 'Sports & Leisure', 'Computers & Acc.'];
   const states = ['São Paulo (SP)', 'Rio de Janeiro (RJ)', 'Minas Gerais (MG)', 'Rio Grande (RS)'];
@@ -84,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const olistYears = ['2018', '2017', '2016'];
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-  // Seeded Master Dataset (120 Records spanning 2016 - 2018)
   const masterDataset = [];
   let orderIdCounter = 10001;
 
@@ -119,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // DOM Elements for Slicers & Dynamic Dashboard
   const filterYear = document.getElementById('filter-year');
   const filterCategory = document.getElementById('filter-category');
   const filterState = document.getElementById('filter-state');
@@ -308,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateDynamicDashboard();
 
   // --------------------------------------------------------------------------
-  // 3. PROJECT 2: RECONCILED A/B TESTING Z-TEST CALCULATOR (ab_data.csv SINGLE SOURCE)
+  // 4. PROJECT 2: A/B TESTING Z-TEST CALCULATOR (ab_data.csv RECONCILED)
   // --------------------------------------------------------------------------
   const inputNa = document.getElementById('input-na');
   const inputXa = document.getElementById('input-xa');
@@ -407,7 +450,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   calculateABTest();
 
-  // Load Exact ab_data.csv Experiment Results
   const loadExpBtn = document.getElementById('load-experiment-data-btn');
   if (loadExpBtn) {
     loadExpBtn.addEventListener('click', () => {
@@ -422,7 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 4. INTERACTIVE SQL QUERY PLAYGROUND
+  // 5. INTERACTIVE SQL QUERY PLAYGROUND
   // --------------------------------------------------------------------------
   const sqlEditor = document.getElementById('sql-editor-textarea');
   const sqlResultTableContainer = document.getElementById('sql-result-table-container');
@@ -557,25 +599,6 @@ LIMIT 5;`,
           showToast('SQL Query Executed Successfully!');
         }, 300);
       }
-    });
-  }
-
-  // --------------------------------------------------------------------------
-  // 5. RESUME MODAL HANDLERS
-  // --------------------------------------------------------------------------
-  const resumeModal = document.getElementById('resume-modal');
-  const openResumeBtn = document.getElementById('open-resume-btn');
-  const closeResumeBtn = document.getElementById('close-resume-btn');
-
-  if (closeResumeBtn && resumeModal) {
-    closeResumeBtn.addEventListener('click', () => {
-      resumeModal.classList.remove('active');
-    });
-  }
-
-  if (resumeModal) {
-    resumeModal.addEventListener('click', (e) => {
-      if (e.target === resumeModal) resumeModal.classList.remove('active');
     });
   }
 
