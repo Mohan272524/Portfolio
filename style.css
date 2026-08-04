@@ -422,13 +422,15 @@ body {
 }
 
 .avatar-img {
-  width: 85px;
-  height: 85px;
-  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  border-radius: 20px;
   object-fit: cover;
   object-position: top center;
   border: 2px solid var(--primary-cyan);
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.35);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .avatar-info h3 {
